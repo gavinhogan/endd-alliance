@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto+Condensed:wght@700&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
 </head>
 
 <body>
@@ -40,17 +41,20 @@
 
         function translatePage(langCode) {
             if (langCode === 'en') {
-                // Restore original (English)
+                // Robust reset: Trigger the "Original" state
+                var select = document.querySelector('select.goog-te-combo');
+                if (select) {
+                    select.value = '';
+                    select.dispatchEvent(new Event('change'));
+                }
+
+                // Banner fallback
                 var iframe = document.querySelector('iframe.goog-te-banner-frame');
                 if (iframe) {
-                    var restoreButton = iframe.contentDocument.getElementById(':1.restore');
-                    if (restoreButton) restoreButton.click();
-                }
-                // Fallback for newer widget versions
-                var combo = document.querySelector('select.goog-te-combo');
-                if (combo) {
-                    combo.value = '';
-                    combo.dispatchEvent(new Event('change'));
+                    try {
+                        var restoreButton = iframe.contentDocument.getElementById(':1.restore');
+                        if (restoreButton) restoreButton.click();
+                    } catch (e) { }
                 }
             } else {
                 var select = document.querySelector('select.goog-te-combo');
@@ -144,7 +148,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 ENDD Alliance - Last War Server 2143</p>
-            <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">VERSION: 1.0.3</p>
+            <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">VERSION: 1.0.4</p>
         </div>
     </footer>
 </body>
