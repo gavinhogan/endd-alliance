@@ -72,6 +72,36 @@ header {
     color: var(--accent-color) !important;
 }
 
+/* Fix for the internal Google Translate menu/dropdown */
+.goog-te-menu-frame {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.goog-te-menu2 {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.goog-te-menu2-item div,
+.goog-te-menu2-item:link div,
+.goog-te-menu2-item:visited div,
+.goog-te-menu2-item:active div {
+    color: var(--text-primary) !important;
+    background-color: var(--card-bg) !important;
+}
+
+.goog-te-menu2-item-selected div,
+.goog-te-menu2-item-selected:link div,
+.goog-te-menu2-item-selected:visited div,
+.goog-te-menu2-item-selected:active div {
+    color: var(--accent-color) !important;
+    font-weight: bold !important;
+}
+
+.goog-te-menu2-item:hover div {
+    background-color: var(--bg-color) !important;
+}
+
 .goog-te-gadget-icon {
     display: none !important;
 }
