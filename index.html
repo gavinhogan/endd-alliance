@@ -15,10 +15,11 @@
 </head>
 
 <body>
+    <div class="hud-overlay"></div>
     <header>
         <div class="container"
             style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-            <div class="logo">ENDD COMMAND CENTER</div>
+            <div class="logo pulse-active">ENDD COMMAND CENTER</div>
             <div class="language-switcher notranslate">
                 <a href="javascript:void(0)" onclick="translatePage('en')" class="lang-link active">EN</a>
                 <a href="javascript:void(0)" onclick="translatePage('ko')" class="lang-link">KO</a>
@@ -39,21 +40,10 @@
 
         function translatePage(langCode) {
             if (langCode === 'en') {
-                // Robust reset: Trigger the "Original" state
-                var select = document.querySelector('select.goog-te-combo');
-                if (select) {
-                    select.value = '';
-                    select.dispatchEvent(new Event('change'));
-                }
-
-                // Banner fallback
-                var iframe = document.querySelector('iframe.goog-te-banner-frame');
-                if (iframe) {
-                    try {
-                        var restoreButton = iframe.contentDocument.getElementById(':1.restore');
-                        if (restoreButton) restoreButton.click();
-                    } catch (e) { }
-                }
+                // The most reliable way to reset Google Translate is to clear its cookie and reload
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
+                window.location.reload();
             } else {
                 var select = document.querySelector('select.goog-te-combo');
                 if (select) {
@@ -101,7 +91,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 ENDD Alliance - Last War Server 2143</p>
-            <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">VERSION: 1.0.4</p>
+            <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">VERSION: 1.0.5</p>
         </div>
     </footer>
 </body>
