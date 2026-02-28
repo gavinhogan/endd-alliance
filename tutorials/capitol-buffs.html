@@ -20,7 +20,7 @@
             <nav>
                 <a href="../index.html" class="back-link">← COMMAND CENTER</a>
             </nav>
-            <div class="language-switcher">
+            <div class="language-switcher notranslate">
                 <a href="javascript:void(0)" onclick="translatePage('en')" class="lang-link active">EN</a>
                 <a href="javascript:void(0)" onclick="translatePage('ko')" class="lang-link">KO</a>
                 <a href="javascript:void(0)" onclick="translatePage('es')" class="lang-link">ES</a>
@@ -39,10 +39,25 @@
         }
 
         function translatePage(langCode) {
-            var select = document.querySelector('select.goog-te-combo');
-            if (select) {
-                select.value = langCode;
-                select.dispatchEvent(new Event('change'));
+            if (langCode === 'en') {
+                // Restore original (English)
+                var iframe = document.querySelector('iframe.goog-te-banner-frame');
+                if (iframe) {
+                    var restoreButton = iframe.contentDocument.getElementById(':1.restore');
+                    if (restoreButton) restoreButton.click();
+                }
+                // Fallback for newer widget versions
+                var combo = document.querySelector('select.goog-te-combo');
+                if (combo) {
+                    combo.value = '';
+                    combo.dispatchEvent(new Event('change'));
+                }
+            } else {
+                var select = document.querySelector('select.goog-te-combo');
+                if (select) {
+                    select.value = langCode;
+                    select.dispatchEvent(new Event('change'));
+                }
             }
             // Update active state
             document.querySelectorAll('.lang-link').forEach(link => {
