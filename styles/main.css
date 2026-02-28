@@ -53,6 +53,37 @@ header {
     letter-spacing: 2px;
 }
 
+.tactical-translator {
+    margin-left: 10px;
+}
+
+/* Google Translate UI Overrides */
+.goog-te-gadget-simple {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    font-family: var(--font-heading) !important;
+    text-transform: uppercase !important;
+    font-size: 0.8rem !important;
+}
+
+.goog-te-gadget-simple .goog-te-menu-value span {
+    color: var(--accent-color) !important;
+}
+
+.goog-te-gadget-icon {
+    display: none !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0px !important;
+}
+
 .hero {
     text-align: center;
     padding: 60px 0;

@@ -15,12 +15,25 @@
 
 <body>
     <header>
-        <div class="container">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <nav>
                 <a href="../index.html" class="back-link">← COMMAND CENTER</a>
             </nav>
+            <div id="google_translate_element" class="tactical-translator"></div>
         </div>
     </header>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <main class="container">
         <article class="tutorial-content">
