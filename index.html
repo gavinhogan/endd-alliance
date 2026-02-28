@@ -39,17 +39,10 @@
         }
 
         function translatePage(langCode) {
-            if (langCode === 'en') {
-                // The most reliable way to reset Google Translate is to clear its cookie and reload
-                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
-                window.location.reload();
-            } else {
-                var select = document.querySelector('select.goog-te-combo');
-                if (select) {
-                    select.value = langCode;
-                    select.dispatchEvent(new Event('change'));
-                }
+            var select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = langCode;
+                select.dispatchEvent(new Event('change'));
             }
             // Update active state
             document.querySelectorAll('.lang-link').forEach(link => {
@@ -91,7 +84,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 ENDD Alliance - Last War Server 2143</p>
-            <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">VERSION: 1.0.5</p>
+            <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">VERSION: 1.0.6</p>
         </div>
     </footer>
 </body>
