@@ -15,9 +15,16 @@
 
 <body>
     <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="container"
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
             <div class="logo">ENDD COMMAND CENTER</div>
-            <div id="google_translate_element" class="tactical-translator"></div>
+            <div class="language-switcher">
+                <a href="javascript:void(0)" onclick="translatePage('en')" class="lang-link active">EN</a>
+                <a href="javascript:void(0)" onclick="translatePage('ko')" class="lang-link">KO</a>
+                <a href="javascript:void(0)" onclick="translatePage('es')" class="lang-link">ES</a>
+                <a href="javascript:void(0)" onclick="translatePage('pt')" class="lang-link">PT</a>
+            </div>
+            <div id="google_translate_element" style="display:none"></div>
         </div>
     </header>
 
@@ -25,9 +32,21 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
+        }
+
+        function translatePage(langCode) {
+            var select = document.querySelector('select.goog-te-combo');
+            if (select) {
+                select.value = langCode;
+                select.dispatchEvent(new Event('change'));
+            }
+            // Update active state
+            document.querySelectorAll('.lang-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.innerText.toLowerCase() === langCode) link.classList.add('active');
+            });
         }
     </script>
     <script type="text/javascript"

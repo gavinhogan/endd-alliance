@@ -53,60 +53,36 @@ header {
     letter-spacing: 2px;
 }
 
-.tactical-translator {
-    margin-left: 10px;
+.language-switcher {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-/* Google Translate UI Overrides */
-.goog-te-gadget-simple {
-    background-color: var(--card-bg) !important;
-    border: 1px solid var(--border-color) !important;
-    padding: 4px 8px !important;
-    border-radius: 4px !important;
-    font-family: var(--font-heading) !important;
-    text-transform: uppercase !important;
-    font-size: 0.8rem !important;
+.lang-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
 }
 
-.goog-te-gadget-simple .goog-te-menu-value span {
-    color: var(--accent-color) !important;
+.lang-link:hover,
+.lang-link.active {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    background: var(--accent-glow);
 }
 
-/* Fix for the internal Google Translate menu/dropdown */
-.goog-te-menu-frame {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
-}
-
-.goog-te-menu2 {
-    background-color: var(--card-bg) !important;
-    border: 1px solid var(--border-color) !important;
-}
-
-.goog-te-menu2-item div,
-.goog-te-menu2-item:link div,
-.goog-te-menu2-item:visited div,
-.goog-te-menu2-item:active div {
-    color: var(--text-primary) !important;
-    background-color: var(--card-bg) !important;
-}
-
-.goog-te-menu2-item-selected div,
-.goog-te-menu2-item-selected:link div,
-.goog-te-menu2-item-selected:visited div,
-.goog-te-menu2-item-selected:active div {
-    color: var(--accent-color) !important;
-    font-weight: bold !important;
-}
-
-.goog-te-menu2-item:hover div {
-    background-color: var(--bg-color) !important;
-}
-
-.goog-te-gadget-icon {
-    display: none !important;
-}
-
-.goog-te-banner-frame.skiptranslate {
+/* Hide the actual google translate widget */
+#google_translate_element,
+.skiptranslate,
+.goog-te-banner-frame {
     display: none !important;
 }
 
