@@ -54,7 +54,7 @@ We are part of the NAP12 (Non-Aggression Pact) for Server 2143. We are not bulli
 
 The brown land surrounding the Capitol (just to the west of our hive) is known as "The Mud." This area is a permanent, active battlefield.
 - **⚠️ Gathering Danger:** If you send your troops to gather from a mine or farm in the mud, you will get hit. It is not a matter of if, but when.
-- **🛑 The Rule:** Keep your gathering troops out of the brown dirt unless you are fully prepared for them to be attacked and sent to the hospital.
+- **🛑 The Rule:** Keep your gathering troops out of the mud unless you are fully prepared for them to be attacked and sent to the hospital.
 
 <span class="section-title" id="vs-mindset">7. THE "VS" Mindset & THE RED DOTS <button class="share-intel" onclick="copyIntel('vs-mindset')"></button></span>
 
@@ -88,6 +88,7 @@ You will see these abbreviations used constantly in chat. Refer back to this lis
 - **TP** = Teleport (Moving your base)
 - **R4 / R5** = Alliance Leadership (Officers / Alliance Leader)
 - **UR / SSR** = Ultra Rare (Gold) / Super Super Rare (Purple)
-- **P2W** = Pay to Win (aka Whales)
+- **F2P / FTP** = Free to Play (or very low spender)
+- **P2W / PTW** = Pay to Win (aka Whales)
 
 </article>
