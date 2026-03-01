@@ -265,6 +265,56 @@ footer {
     font-size: 0.8rem;
 }
 
+/* TABLE STYLING */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.95em;
+    font-family: var(--font-body);
+    min-width: 400px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    /* Optional: if we want rounded outer corners, harder with border-collapse */
+    overflow: hidden;
+    /* For border-radius to work on table wrapper */
+}
+
+table thead tr {
+    background-color: rgba(247, 181, 0, 0.1);
+    /* Subtle tactical amber tint */
+    color: var(--accent-color);
+    text-align: left;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+}
+
+table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+    /* Very subtle zebra stripe */
+}
+
+table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--accent-color);
+    /* Strong bottom border */
+}
+
+table tbody tr:hover {
+    background-color: rgba(247, 181, 0, 0.05);
+    /* Hover effect matching theme */
+}
+
 @media (min-width: 600px) {
     .card-grid {
         display: grid;
