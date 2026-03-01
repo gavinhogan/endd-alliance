@@ -25,16 +25,16 @@ Read through this guide to understand our core rules, culture, and expectations.
 <span class="section-title" id="move-to-hive">1. MOVE TO THE HIVE <button class="share-intel" onclick="copyIntel('move-to-hive')"></button></span>
 
 Your first priority is relocating your base to the ENDD Hive.
-- **📍 The Perfect Fit:** Ideally, you should use an Advanced Teleport to fit tightly into our established grid coordinates.
+- **📍 The Perfect Fit:** Ideally, you should use an Advanced Teleport to fit tightly into our established grid coordinates. Ask an R4 or R5 for the exact location they want you to take.
 - **🎟️ The Backup Plan:** If you do not have an Advanced Teleport and cannot afford one yet, use an Alliance Teleport (Alliance -> Assemble -> Teleport). This will move you close to the hive. You will still need to buy an Advanced Teleport later to snap perfectly into the grid.
 
-<span class="section-title" id="change-name">2. CHANGE YOUR NAME <button class="share-intel" onclick="copyIntel('change-name')"></button></span>
+<span class="section-title" id="change-name">2. YOU DESERVE A REAL NAME <button class="share-intel" onclick="copyIntel('change-name')"></button></span>
 
-- **📛 Ditch the Numbers:** If your name is currently commander2343321234 (or any other generic string of numbers), you must change it immediately. Pick an identity so we know who we are fighting alongside.
+- **🫥 Ditch the Numbers:** If your name is currently commander2343321234 (or any other generic name), you must change it immediately. Pick an identity so we know who we are fighting alongside.
 
 <span class="section-title" id="communication">3. COMMUNICATION IS MANDATORY <button class="share-intel" onclick="copyIntel('communication')"></button></span>
 
-- **✉️ Read the Mail:** You must read all Alliance Mail and pinned announcements.
+- **✉️ Read the Mail:** You must read all Alliance Mail and announcements.
 - **📜 Catch Up:** When you log in, try to read the chat scroll-back to see what you missed.
 - **🌍 World Chat Protocol:** You are welcome to partake in lighthearted banter but never speak on behalf of the alliance in World Chat. Feel free Only ENDD leadership is authorized to do that.
 
