@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "GOLDEN ZOMBIES [DRAFT]"
+title: "GOLDEN ZOMBIES"
 description: "The absolute best way to gather major resources during the bi-weekly event."
 emoji: "🧟"
 tags: tutorial
@@ -15,15 +15,13 @@ sourceUrl: "https://docs.google.com/document/d/1w40xcAqGArXUJtNGZ-qhVRSNNJZxXRJn
         🛡️ConfuzedCorp’s, Knights of the End Guide 🛡️</p>
 </div>
 
-<div style="background: rgba(247, 181, 0, 0.1); border-left: 4px solid var(--accent-color); padding: 15px; margin-bottom: 30px; color: var(--text-primary); font-size: 0.95rem;">
-    <strong>⚠️ DRAFT STATUS:</strong> This document is currently a work-in-progress draft. Tactics and procedures are subject to change by Alliance Command.
-</div>
+
 
 <span class="section-title">I. INTRODUCTION</span>
 
 The Golden Zombie event (Bi-Weekly) is the absolute best way to gather major resources, especially in the early phase of the game.
 
-The Mindset: This event will destroy your troops. Remember that you train troops to fight and die! The Golden Zombie event is a fantastic trade of troops for massive resources. You just need to ensure your drill grounds are fully stocked throughout the event. Stay chill about losing troops—the rewards are worth it.
+**The Mindset:** This event will destroy your troops. Remember that you train troops to fight and die! The Golden Zombie event is a fantastic trade of troops for massive resources. You just need to ensure your drill grounds are fully stocked throughout the event. Stay chill about losing troops—the rewards are worth it.
 
 To be successful, you must stock up ALL your stamina in the days leading up to the event. Do not waste stamina on regular world map zombies when this event is approaching! Other than Golden Zombies, I only use stamina boosts when absolutely vital to do so.
 
