@@ -302,25 +302,30 @@ ul {
 
 li {
     position: relative;
-    padding-left: 30px;
+    padding-left: 25px;
     margin-bottom: 12px;
     color: var(--text-primary);
-    text-align: left;
-    /* Ensure text is not centered */
-    display: flex;
-    align-items: flex-start;
+    line-height: 1.6;
 }
 
 li::before {
     content: '•';
-    color: var(--accent-color);
+    color: var(--accent-primary);
     position: absolute;
     left: 0;
-    font-weight: bold;
+    font-weight: 800;
+    font-size: 1.2rem;
+    line-height: 1;
 }
 
 strong {
-    color: #fff;
+    color: var(--text-on-light);
+    font-weight: 700;
+}
+
+/* Remove the problematic tutorial-specific overrides that were causing spacing issues */
+.tutorial-content ul {
+    margin: 15px 0;
 }
 
 .back-link {
@@ -374,8 +379,8 @@ table tbody tr {
 }
 
 table tbody tr:nth-of-type(even) {
-    background-color: rgba(255, 255, 255, 0.02);
-    /* Very subtle zebra stripe */
+    background-color: rgba(0, 157, 255, 0.03);
+    /* Soft blue tint for zebra stripes */
 }
 
 table tbody tr:last-of-type {
