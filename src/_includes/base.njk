@@ -67,6 +67,14 @@
                     li.classList.add('has-icon');
                 }
             });
+
+            // Automatic Table Wrapping for Mobile
+            document.querySelectorAll('.tutorial-content table').forEach(table => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'table-container';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            });
         });
 
         function copyIntel(id) {

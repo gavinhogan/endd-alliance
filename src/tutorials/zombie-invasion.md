@@ -52,7 +52,7 @@ When a Boss is spawned, it requires a powerful Alliance Rally to defeat.
 
 **Rally Power Guide:** Zombie bosses are as complex as other opponent squads. They are made up of tanks, missiles, and air heroes as well as troops with levels. For this reason, you cannot expect to have a certainty that a rally with X power will be assured to kill a certain level. With that said, we can have general guidance on what will work for any given level.
 
-| Boss Level | Total Rally Power | Recommended Troop Level |
+| Boss Level | Total Rally Power | Zombie Squad Troop Level |
 |---|---|---|
 | 5 | 7.3m | T6 |
 | 10 | 8.1m | T7 |

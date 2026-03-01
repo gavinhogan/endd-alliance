@@ -401,19 +401,24 @@ footer {
 }
 
 /* TABLE STYLING */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 25px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 0;
     font-size: 0.95em;
     font-family: var(--font-body);
-    min-width: 400px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    /* Optional: if we want rounded outer corners, harder with border-collapse */
-    overflow: hidden;
-    /* For border-radius to work on table wrapper */
+    min-width: 500px;
+    /* Ensure tactical data stays readable */
 }
 
 table thead tr {
@@ -450,9 +455,34 @@ table tbody tr:hover {
     /* Hover effect matching theme */
 }
 
-@media (min-width: 600px) {
+@media (max-width: 600px) {
     .card-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: block;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+
+    header .container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    .language-switcher {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo-helmet {
+        margin-right: 0;
+        margin-bottom: 8px;
     }
 }
