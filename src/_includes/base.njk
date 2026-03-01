@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENDD COMMAND CENTER | Last War Server 2143</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <title>{{ title | default("ENDD COMMAND CENTER | Last War Server 2143") }}</title>
+    
+    <!-- Path resolution using 11ty filters -->
+    <link rel="stylesheet" href="{{ '/styles/main.css' | url }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto+Condensed:wght@700&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | url }}">
 </head>
 
 <body>
@@ -20,6 +22,13 @@
         <div class="container"
             style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
             <div class="logo pulse-active">ENDD COMMAND CENTER</div>
+            
+            {% if backLink %}
+            <nav>
+                <a href="{{ '/' | url }}" class="back-link">← COMMAND CENTER</a>
+            </nav>
+            {% endif %}
+
             <div class="language-switcher notranslate">
                 <a href="javascript:void(0)" onclick="translatePage('en')" class="lang-link active">EN</a>
                 <a href="javascript:void(0)" onclick="translatePage('ko')" class="lang-link">KO</a>
@@ -51,34 +60,23 @@
             });
         }
     </script>
+    <script type="text/javascript">
+        function copyIntel(id) {
+            const url = window.location.href.split('#')[0] + '#' + id;
+            navigator.clipboard.writeText(url);
+            const btn = document.querySelector(`[onclick="copyIntel('${id}')"]`);
+            if(btn) {
+                const original = btn.innerHTML;
+                btn.innerHTML = 'COPIED';
+                setTimeout(() => btn.innerHTML = original, 2000);
+            }
+        }
+    </script>
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <main class="container">
-        <section class="hero">
-            <h1>STRATEGIC REPOSITORY</h1>
-            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">Official tactical guides and
-                operational procedures from <strong>ConfuzedCorp</strong> for the <strong>Knights of the End</strong> on
-                <strong>2143</strong>.
-            </p>
-        </section>
-
-        <nav class="card-grid">
-            <a href="tutorials/capitol-buffs.html" class="card">
-                <h3>🏛️ CAPITOL BUFFS</h3>
-                <p>Maximize your upgrades and resource collection with Server 2143 Titles.</p>
-            </a>
-
-            <a href="tutorials/marshall-guard.html" class="card">
-                <h3>🛡️ MARSHALL GUARD</h3>
-                <p>Alliance coordination procedures and healing strategies for team exercises.</p>
-            </a>
-
-            <a href="tutorials/secret-tasks.html" class="card">
-                <h3>🕵️ SECRET TASKS</h3>
-                <p>The Robin Hood Strategy: Plundering enemies and securing server wealth.</p>
-            </a>
-        </nav>
+        {{ content | safe }}
     </main>
 
     <footer>

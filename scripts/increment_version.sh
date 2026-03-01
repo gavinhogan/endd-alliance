@@ -14,8 +14,8 @@ patch=$((patch + 1))
 NEW_VERSION="$major.$minor.$patch"
 echo "$NEW_VERSION" > "$VERSION_FILE"
 
-# Sync with HTML files
+# Sync with NJK files
 # Assuming version is stored as "VERSION: x.x.x" in footers
-grep -rli "VERSION: " . --include="*.html" | xargs -I@ sed -i '' "s/VERSION: $OLD_VERSION/VERSION: $NEW_VERSION/g" @
+grep -rli "VERSION: " . --include="*.njk" | xargs -I@ sed -i '' "s/VERSION: $OLD_VERSION/VERSION: $NEW_VERSION/g" @
 
-echo "Version incremented from $OLD_VERSION to $NEW_VERSION and synced to HTML."
+echo "Version incremented from $OLD_VERSION to $NEW_VERSION and synced to NJK layouts."
