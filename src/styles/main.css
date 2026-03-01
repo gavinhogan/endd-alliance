@@ -294,10 +294,22 @@ body {
     content: 'SHARE INTEL';
 }
 
+ul,
+ol {
+    padding-left: 20px;
+    margin: 20px 0;
+}
+
 ul {
     list-style: none;
-    padding: 0;
-    margin: 20px 0;
+    padding-left: 0;
+    /* Reset for custom bullet logic */
+}
+
+ol {
+    list-style-position: outside;
+    padding-left: 25px;
+    /* Ensure numbers have room */
 }
 
 li {

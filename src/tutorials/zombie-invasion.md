@@ -41,7 +41,7 @@ Killing regular Golden Zombies is how you discover high-value Bosses, which also
 - **The Spawn Rate:** A Boss spawns approximately 1 out of every 8 times you kill a regular Golden Zombie.
 - **The Level Rule:** The Level of the spawned Boss is based on the strength of the squad that killed the regular zombie.
 - **The Spawn Strategy:** If you are a high-power player, hunt regular zombies with your second (weaker) squads. This keeps the spawned Boss levels manageable so the alliance can defeat them. If you are still growing, hunt with your 1st Squad to ensure you survive the initial zombie kills.
-- 🛰️ **The Boss Finder:** Open the event screen to use the Boss Finder. This tool shows you the Bosses that you spawned, as well as those spawned by the alliance. It displays their level and distance, allowing you to optimize which Bosses to rally first.
+- **The Boss Finder:** Open the event screen to use the Boss Finder. This tool shows you the Bosses that you spawned, as well as those spawned by the alliance. It displays their level and distance, allowing you to optimize which Bosses to rally first.
    - You should prioritize hitting these bosses and not just ones you find on the map.
 
 <span class="section-title" id="rally-power-guide">IV. RALLY ETIQUETTE & POWER MANAGEMENT <button class="share-intel" onclick="copyIntel('rally-power-guide')"></button></span>
