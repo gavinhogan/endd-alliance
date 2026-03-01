@@ -74,9 +74,8 @@
             navigator.clipboard.writeText(url);
             const btn = document.querySelector(`[onclick="copyIntel('${id}')"]`);
             if(btn) {
-                const original = btn.innerHTML;
-                btn.innerHTML = 'COPIED';
-                setTimeout(() => btn.innerHTML = original, 2000);
+                btn.classList.add('is-copied');
+                setTimeout(() => btn.classList.remove('is-copied'), 2000);
             }
         }
     </script>

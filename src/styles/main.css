@@ -294,6 +294,17 @@ body {
     content: 'SHARE INTEL';
 }
 
+.share-intel.is-copied {
+    background: #28a745;
+    /* Green for success */
+    border-color: #28a745;
+    color: #ffffff;
+}
+
+.share-intel.is-copied::after {
+    content: 'COPIED';
+}
+
 ul,
 ol {
     padding-left: 20px;
