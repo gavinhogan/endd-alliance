@@ -60,7 +60,7 @@
     <script>
         // Automatic Icon/Emoji Detection for Lists
         document.addEventListener('DOMContentLoaded', () => {
-            const emojiRegex = /^(\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f\ude80-\udeff]|\ud83e[\udd00-\uddff]|[\u2000-\u2BFF\u2600-\u26FF\u2700-\u27BF])/;
+            const emojiRegex = /^([\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2000-\u32FF]|[\u2600-\u27BF])/;
             document.querySelectorAll('.tutorial-content li').forEach(li => {
                 const text = li.textContent.trim();
                 if (emojiRegex.test(text)) {
