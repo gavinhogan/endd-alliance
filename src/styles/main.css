@@ -320,7 +320,8 @@ ul:not(.no-bullets) li:not(.has-icon)::before {
     left: 0;
     font-weight: 800;
     font-size: 1.2rem;
-    line-height: 1.2;
+    line-height: 1.1;
+    /* Adjusted for better alignment */
 }
 
 /* Icon lists (automatic or manual) */

@@ -21,7 +21,7 @@
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <a href="{{ '/' | url }}" class="logo" style="text-decoration: none;">
-                <img src="{{ '/assets/favicon.png' | url }}" class="logo-helmet pulse-active" alt="Knight Helmet">
+                <img src="{{ '/assets/header-logo.png' | url }}" class="logo-helmet pulse-active" alt="Knight Helmet">
                 <span>ENDD COMMAND CENTER</span>
             </a>
             
@@ -60,7 +60,7 @@
     <script>
         // Automatic Icon/Emoji Detection for Lists
         document.addEventListener('DOMContentLoaded', () => {
-            const emojiRegex = /^(\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f\ude80-\udeff]|\ud83e[\udd00-\uddff])/;
+            const emojiRegex = /^(\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f\ude80-\udeff]|\ud83e[\udd00-\uddff]|[\u2000-\u2BFF\u2600-\u26FF\u2700-\u27BF])/;
             document.querySelectorAll('.tutorial-content li').forEach(li => {
                 const text = li.textContent.trim();
                 if (emojiRegex.test(text)) {
