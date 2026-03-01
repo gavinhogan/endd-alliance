@@ -417,8 +417,6 @@ table {
     margin: 0;
     font-size: 0.95em;
     font-family: var(--font-body);
-    min-width: 500px;
-    /* Ensure tactical data stays readable */
 }
 
 table thead tr {
