@@ -14,8 +14,4 @@ patch=$((patch + 1))
 NEW_VERSION="$major.$minor.$patch"
 echo "$NEW_VERSION" > "$VERSION_FILE"
 
-# Sync with NJK files
-# Assuming version is stored as "VERSION: x.x.x" in footers
-grep -rli "VERSION: " . --include="*.njk" | xargs -I@ sed -i '' "s/VERSION: $OLD_VERSION/VERSION: $NEW_VERSION/g" @
-
-echo "Version incremented from $OLD_VERSION to $NEW_VERSION and synced to NJK layouts."
+echo "Version incremented from $OLD_VERSION to $NEW_VERSION. Eleventy will sync this to the footer on the next build."
