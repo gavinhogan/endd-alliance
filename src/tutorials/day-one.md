@@ -81,18 +81,17 @@ We routinely clear out inactive accounts to keep the alliance strong. Because it
 
 You will see these abbreviations used constantly in chat. Refer back to this list until you have them memorized:
 
-- **📖 VS** = Alliance Duel (Versus)
-- **📖 AR** = Arms Race
-- **📖 MG** = Marshall Guard
-- **📖 AC** = Alliance Chat
-- **📖 WC** = World Chat
-- **📖 DW** = Doom Walker
-- **📖 HQ** = Headquarters (Your main base level)
-- **📖 NAP** = Non-Aggression Pact (The servers' peace treaty)
-- **📖 TP** = Teleport (Moving your base)
-- **📖 R4 / R5** = Alliance Leadership (Officers / Alliance Leader)
-- **📖 UR / SSR** = Ultra Rare (Gold) / Super Super Rare (Purple)
-- **📖 F2P** = Free to Play (or very low spender)
-- **📖 P2W** = Pay to Win (aka Whales)
+- **VS** = Alliance Duel (Versus)
+- **AR** = Arms Race
+- **MG** = Marshall Guard
+- **AC** = Alliance Chat
+- **WC** = World Chat
+- **DW** = Doom Walker
+- **HQ** = Headquarters (Your main base level)
+- **NAP / NAP12** = Non-Aggression Pact (The servers' peace treaty)
+- **TP** = Teleport (Moving your base)
+- **R4 / R5** = Alliance Leadership (Officers / Alliance Leader)
+- **UR / SSR** = Ultra Rare (Gold) / Super Super Rare (Purple)
+- **P2W** = Pay to Win (aka Whales)
 
 </article>
