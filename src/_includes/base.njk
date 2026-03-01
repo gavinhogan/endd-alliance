@@ -70,19 +70,25 @@
         });
 
         function copyIntel(id) {
-            const url = window.location.href.split('#')[0] + '#' + id;
+            const url = id ? (window.location.href.split('#')[0] + '#' + id) : window.location.href.split('#')[0];
             navigator.clipboard.writeText(url);
-            const btn = document.querySelector(`[onclick="copyIntel('${id}')"]`);
-            if(btn) {
+            const selector = id ? `[onclick="copyIntel('${id}')"]` : '.share-guide-btn';
+            document.querySelectorAll(selector).forEach(btn => {
                 btn.classList.add('is-copied');
                 setTimeout(() => btn.classList.remove('is-copied'), 2000);
-            }
+            });
         }
     </script>
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <main class="container">
+        {% if tags and "tutorial" in tags %}
+        <div class="share-guide-bar">
+            <div class="share-guide-label">🔗 SHARE THIS TACTICAL GUIDE</div>
+            <button class="share-intel share-guide-btn" onclick="copyIntel('')"></button>
+        </div>
+        {% endif %}
         {{ content | safe }}
     </main>
 
