@@ -57,7 +57,18 @@
             });
         }
     </script>
-    <script type="text/javascript">
+    <script>
+        // Automatic Icon/Emoji Detection for Lists
+        document.addEventListener('DOMContentLoaded', () => {
+            const emojiRegex = /^(\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f\ude80-\udeff]|\ud83e[\udd00-\uddff])/;
+            document.querySelectorAll('.tutorial-content li').forEach(li => {
+                const text = li.textContent.trim();
+                if (emojiRegex.test(text)) {
+                    li.classList.add('has-icon');
+                }
+            });
+        });
+
         function copyIntel(id) {
             const url = window.location.href.split('#')[0] + '#' + id;
             navigator.clipboard.writeText(url);

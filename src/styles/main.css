@@ -302,20 +302,34 @@ ul {
 
 li {
     position: relative;
-    padding-left: 25px;
     margin-bottom: 12px;
     color: var(--text-primary);
     line-height: 1.6;
+    text-align: left;
 }
 
-li::before {
+/* Default bullets for standard lists */
+ul:not(.no-bullets) li:not(.has-icon) {
+    padding-left: 25px;
+}
+
+ul:not(.no-bullets) li:not(.has-icon)::before {
     content: '•';
     color: var(--accent-primary);
     position: absolute;
     left: 0;
     font-weight: 800;
     font-size: 1.2rem;
-    line-height: 1;
+    line-height: 1.2;
+}
+
+/* Icon lists (automatic or manual) */
+li.has-icon {
+    padding-left: 0;
+}
+
+li.has-icon::before {
+    display: none;
 }
 
 strong {
