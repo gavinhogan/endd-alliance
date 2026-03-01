@@ -1,6 +1,9 @@
 ---
 layout: base.njk
-title: CAPITOL BUFFS | ENDD COMMAND CENTER
+title: CAPITOL BUFFS
+description: "Maximize your upgrades and resource collection with Server 2143 Titles."
+emoji: "🏛️"
+tags: tutorial
 backLink: true
 ---
 <article class="tutorial-content">

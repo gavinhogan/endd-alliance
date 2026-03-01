@@ -11,18 +11,10 @@ layout: base.njk
 </section>
 
 <nav class="card-grid">
-    <a href="{{ '/tutorials/capitol-buffs/' | url }}" class="card">
-        <h3>🏛️ CAPITOL BUFFS</h3>
-        <p>Maximize your upgrades and resource collection with Server 2143 Titles.</p>
+    {% for tutorial in collections.tutorial %}
+    <a href="{{ tutorial.url | url }}" class="card">
+        <h3>{{ tutorial.data.emoji }} {{ tutorial.data.title }}</h3>
+        <p>{{ tutorial.data.description }}</p>
     </a>
-
-    <a href="{{ '/tutorials/marshall-guard/' | url }}" class="card">
-        <h3>🛡️ MARSHALL GUARD</h3>
-        <p>Alliance coordination procedures and healing strategies for team exercises.</p>
-    </a>
-
-    <a href="{{ '/tutorials/secret-tasks/' | url }}" class="card">
-        <h3>🕵️ SECRET TASKS</h3>
-        <p>The Robin Hood Strategy: Plundering enemies and securing server wealth.</p>
-    </a>
+    {% endfor %}
 </nav>

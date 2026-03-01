@@ -1,6 +1,9 @@
 ---
 layout: base.njk
-title: MARSHALL GUARD | ENDD COMMAND CENTER
+title: MARSHALL GUARD
+description: "Alliance coordination procedures and healing strategies for team exercises."
+emoji: "🛡️"
+tags: tutorial
 backLink: true
 ---
 <article class="tutorial-content">

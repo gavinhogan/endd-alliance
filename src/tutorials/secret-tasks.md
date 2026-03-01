@@ -1,6 +1,9 @@
 ---
 layout: base.njk
-title: SECRET TASKS | ENDD COMMAND CENTER
+title: SECRET TASKS
+description: "The Robin Hood Strategy: Plundering enemies and securing server wealth."
+emoji: "🕵️"
+tags: tutorial
 backLink: true
 ---
 <article class="tutorial-content">
