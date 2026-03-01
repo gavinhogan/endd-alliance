@@ -4,7 +4,7 @@ title: MARSHALL GUARD
 description: "Alliance coordination procedures and healing strategies for team exercises."
 emoji: "🛡️"
 tags: tutorial
-sourceUrl: ""
+sourceUrl: "https://docs.google.com/document/d/11KswV81gEmKPVWHXz7YUQYdOqPB2LFB6G8jrQKGLFvs/edit?usp=sharing"
 backLink: true
 ---
 <article class="tutorial-content">

@@ -4,7 +4,7 @@ title: CAPITOL BUFFS
 description: "Maximize your upgrades and resource collection with Server 2143 Titles."
 emoji: "🏛️"
 tags: tutorial
-sourceUrl: ""
+sourceUrl: "https://docs.google.com/document/d/121g-11SIWsAnCE-o99rFKZ1Tb2-1oLFUqZTvODp3oZI/edit?usp=sharing"
 backLink: true
 ---
 <article class="tutorial-content">

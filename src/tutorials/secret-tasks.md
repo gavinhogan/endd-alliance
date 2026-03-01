@@ -4,7 +4,7 @@ title: SECRET TASKS
 description: "The Robin Hood Strategy: Plundering enemies and securing server wealth."
 emoji: "🕵️"
 tags: tutorial
-sourceUrl: ""
+sourceUrl: "https://docs.google.com/document/d/1QdS87rVMWYF5slF8EhMADIeBBYy5pxBIqfZm-rv20tI/edit?tab=t.0"
 backLink: true
 ---
 <article class="tutorial-content">
