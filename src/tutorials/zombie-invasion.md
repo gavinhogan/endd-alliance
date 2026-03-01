@@ -15,66 +15,56 @@ sourceUrl: "https://docs.google.com/document/d/1w40xcAqGArXUJtNGZ-qhVRSNNJZxXRJn
         🛡️ConfuzedCorp’s, Knights of the End Guide 🛡️</p>
 </div>
 
-
-
 <span class="section-title">I. INTRODUCTION</span>
 
-The Golden Zombie event (Bi-Weekly) is the absolute best way to gather major resources, especially in the early phase of the game.
+The Golden Zombie event (Bi-Weekly) is the absolute best way to gather major resources, especially in the early phase of the game. 
 
-**The Mindset:** This event will destroy your troops. Remember that you train troops to fight and die! The Golden Zombie event is a fantastic trade of troops for massive resources. You just need to ensure your drill grounds are fully stocked throughout the event. Stay chill about losing troops—the rewards are worth it.
+**The Mindset:** This event will destroy your troops. Remember that your troops are meant to die! The Golden Zombie event is where you trade your military power for the resources you need to ensure you can continue to produce and upgrade even better and more powerful troops—the reincarnation cycle!
 
-To be successful, you must stock up ALL your stamina in the days leading up to the event. Do not waste stamina on regular world map zombies when this event is approaching! Other than Golden Zombies, I only use stamina boosts when absolutely vital to do so.
+To be successful, you must focus all your efforts on the event and its bosses. Do not lose focus or waste stamina on anything else while the event is live. If it’s not related to killing the Golden Zombie, it's not a priority!
 
 <span class="section-title" id="the-hunt">II. BASIC GUIDANCE: THE HUNT <button class="share-intel" onclick="copyIntel('the-hunt')"></button></span>
 
-- 🔋 **Stamina is Fuel:** You will need hundreds of stamina points to maximize your rewards.
-- 🧭 **Visual Hunting:** You do not need a special tool to find regular event zombies. They are easy to spot right on the world map—just look for the gold/yellow skulls.
-- 🏹 **Chain Your Marches:** Hunt in a continuous march. Hit a zombie, and while your squad is still in the field, immediately target the next one. Hit as many as you can before you run out of stamina or your troops need healing.
-- 🌊 **Ride the Waves:** The zombies arrive in waves. If you have hunted all the zombies near our hive, it is usually better to wait for the next wave instead of hunting far away. Bosses spawned far from the hive take too long to rally. Be thoughtful about where you spawn bosses.
+- 🔋 **Stamina:** Make sure you use every bit of stamina on the event. The rewards for killing bosses are significantly better than any other use of stamina.
+- 🧭 **Visibility:** Keep your eyes on the map. Bosses are easy to spot but disappear quickly if you are not fast.
+- 🏹 **Challenge:** Only start rallies on bosses that you and your alliance can actually kill. Check the power level before you hit the button.
+- 🌊 **Riding the Wave:** Always try to stay near coworkers or alliance members. Bosses often spawn in clusters when many players are active in one area.
 
 <span class="section-title" id="spawning-bosses">III. SPAWNING & TRACKING BOSSES <button class="share-intel" onclick="copyIntel('spawning-bosses')"></button></span>
 
 Killing regular Golden Zombies is how you discover high-value Bosses, which also appear on the map.
 
-- **The Spawn Rate:** A Boss spawns approximately 1 out of every 8 times you kill a regular Golden Zombie.
-- **The Level Rule:** The Level of the spawned Boss is based on the strength of the squad that killed the regular zombie.
-- **The Spawn Strategy:** If you are a high-power player, hunt regular zombies with your second (weaker) squads. This keeps the spawned Boss levels manageable so the alliance can defeat them. If you are still growing, hunt with your 1st Squad to ensure you survive the initial zombie kills.
-- **The Boss Finder:** Open the event screen to use the Boss Finder. This tool shows you the Bosses that you spawned, as well as those spawned by the alliance. It displays their level and distance, allowing you to optimize which Bosses to rally first.
-   - You should prioritize hitting these bosses and not just ones you find on the map.
+- **The Small Boss:** Spawns after killing 5-10 regular zombies.
+- **The Large Boss:** Spawns after killing a Small Boss.
+- **The Super Boss:** Spawns after killing a Large Boss. This requires a coordinated rally from your alliance. Only the strongest should lead!
+- 🛰️ **The Tracker:** Use the alliance chat to share locations of Super Bosses. Communication is the key to maximizing the number of Super Bosses your alliance can kill.
 
-<span class="section-title" id="rally-power-guide">IV. RALLY ETIQUETTE & POWER MANAGEMENT <button class="share-intel" onclick="copyIntel('rally-power-guide')"></button></span>
+<span class="section-title" id="rally-etiquette">IV. RALLY ETIQUETTE & POWER MANAGEMENT <button class="share-intel" onclick="copyIntel('rally-etiquette')"></button></span>
 
-When a Boss is spawned, it requires a powerful Alliance Rally to defeat.
-
-- **Respect the Rally:** The level of the Boss dictates how strong the rally needs to be. Hitting a Boss with an underpowered rally damages everyone involved. Do not join rallies where your squad power cannot make a real impact.
-- **Avoid Rally Dilution:** Do not run lots of concurrent rallies. Having too many rallies at once dilutes our alliance power and increases the odds that players will accidentally send their weak 2nd or 3rd squads.
-- **Consolidate:** If you see that your rally is competing with another active rally, consider canceling yours. Join the rally that started sooner to guarantee a victory, then rally yours next.
-
-**Rally Power Guide:** Zombie bosses are as complex as other opponent squads. They are made up of tanks, missiles, and air heroes as well as troops with levels. For this reason, you cannot expect to have a certainty that a rally with X power will be assured to kill a certain level. With that said, we can have general guidance on what will work for any given level.
-
-| Boss Level | Total Rally Power | Zombie Squad Troop Level |
-|---|---|---|
-| 5 | 7.3m | T6 |
-| 10 | 8.1m | T7 |
-| 15 | 8.9m | T7 |
-| 20 | 10.9m | T8 |
-| 25 | 11.9m | T8 |
-| 30 | 13m | T8 |
-| 35 | 15.3m | T9 |
-| 40 | 16m | T9 |
-| 45 | 17.4m | T9 |
-| 50 | 20m | T10 |
-| 55 | 22m | T10 |
-| 60 | 24m | T10 |
+- **Respect the Spawn:** If someone spawns a boss, they should have priority on the first rally. Hitting a boss someone else spawned without permission is considered "poaching" and is against alliance rules.
+- **Avoid 1-Troop Rallies:** To ensure bosses are killed quickly, please do not send only one troop once the rally has begun. Make sure you contribute a meaningful amount of power or at least send the maximum your march allows to help the rally leader.
+- **Conserve Marches:** Use your marches wisely. If there are multiple rallies, join the one that is closest or needs the most help before starting your own. This ensures that every rally is successful.
+- **Rally Leader Power:** Only players with significantly high power should lead rallies. If you are matched against a Boss you cannot kill on your own, wait for a stronger player to lead. This saves everyone’s stamina and ensures that the boss is killed efficiently without any unnecessary troop loss.
 
 <span class="section-title" id="rewards">V. HOW BOSS REWARDS WORK <button class="share-intel" onclick="copyIntel('rewards')"></button></span>
 
-Killing a Boss provides massive loot, and the game heavily rewards teamwork. There are four ways to get paid:
+Killing a Boss is the goal! There are several ways to get paid:
 
-1. **The Leader's Reward:** The commander who starts and leads the rally gets an extra bonus chest for organizing the attack.
-2. **Participant Loot:** If you join the rally and help defeat the Boss, you get direct drops (Resources, Speed-ups, and Gear Chests).
-3. **Alliance Treasure:** Every Boss killed generates an Alliance Treasure Chest. Even members who didn't fight will get a chest in the Alliance menu.
-4. **The Finder's Reward:** If you spawn a Boss, you get a "Finder's Reward" sent to your mail when it is killed, regardless of who kills it.
-   - 😎 **Stay chill:** Because of the Finder's Reward, if you spawn a boss and someone else (even outside our alliance) kills it, don't worry. You still get paid! There are plenty of bosses on the map.
+1. **The Lucky Last Hit:** The player who delivers the finishing blow to a Boss gets a bonus Reward Chest.
+2. **Participation Rewards:** Everyone who joins the rally gets a Reward Chest (Resources + Speedups).
+3. **Alliance Rewards:** When a Super Boss is killed, every player in the alliance receives a small gift.
+4. **The First Hit Bonus:** There is an extra Reward Chest sent via in-game mail when you strike a boss for the very first time.
+
+😎 **Stamina is key!** Always make sure you have enough stamina (even if you need to buy it) to ensure you can participate in all the bosses that spawn.
+
+| Boss Level | Lucky Hit Chests | Participation Chests | Recommended Power |
+| :--- | :--- | :--- | :--- |
+| 1 | 1 | 1 | 100k |
+| 2 | 1 | 1 | 250k |
+| 3 | 1 | 2 | 500k |
+| 4 | 2 | 2 | 1.2M |
+| 5 | 2 | 3 | 2.5M |
+| 6 | 3 | 4 | 5M |
+| Super | 5 | 5 | 10M+ |
 
 </article>
