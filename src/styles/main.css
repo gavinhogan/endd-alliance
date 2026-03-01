@@ -14,8 +14,10 @@
     /* Deep blue for headings */
     --text-primary: #1a1a1a;
     /* Near black for body text */
-    --text-secondary: #5c6b7a;
-    /* Muted blue-gray for metadata */
+    --text-secondary: #4a5a6a;
+    /* Darker blue-gray for better contrast on light blue */
+    --text-on-light: #004d80;
+    /* Specific high-contrast blue for text on light backgrounds */
 
     --border-color: #d1e6ff;
     /* Soft blue borders */
@@ -216,6 +218,17 @@ body {
     font-family: var(--font-heading);
     font-size: 1.2rem;
     margin-bottom: 12px;
+}
+
+.hero p {
+    color: var(--text-secondary) !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.hero p strong {
+    color: var(--text-on-light);
+    font-weight: 800;
 }
 
 .card p {
