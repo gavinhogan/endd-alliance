@@ -436,6 +436,18 @@ table td {
     border: 1px solid var(--border-color);
 }
 
+table th {
+    white-space: normal;
+    /* Allow headers to wrap */
+    vertical-align: bottom;
+}
+
+table td {
+    white-space: nowrap;
+    /* Prevent tactical data from wrapping */
+    vertical-align: middle;
+}
+
 table tbody tr {
     border-bottom: 1px solid var(--border-color);
 }
