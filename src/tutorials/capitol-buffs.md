@@ -30,7 +30,7 @@ Capitol Buffs (also known as Titles) are powerful roles that provide massive spe
 <span class="section-title" id="titles">II. THE TITLES & STRATEGIC USE <button class="share-intel" onclick="copyIntel('titles')"></button></span>
 
 <div style="margin-bottom: 30px;">
-    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">🏗️ Secretary of Development</h3>
+    <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">🏗️ Secretary of Development</h3>
     <ul>
         <li><strong>The Buff:</strong> +50% Building Speed / +25% Research Speed.</li>
         <li><strong>Usage:</strong> This is for your "Big Plays." Use it for HQ upgrades or high-level buildings that take multiple days and you will get huge gains. Be ready: Have all resources and requirements met before you join the queue so you can click "Upgrade" when you get the notification.</li>
@@ -39,7 +39,7 @@ Capitol Buffs (also known as Titles) are powerful roles that provide massive spe
 </div>
 
 <div style="margin-bottom: 30px;">
-    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">🔬 Secretary of Science</h3>
+    <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">🔬 Secretary of Science</h3>
     <ul>
         <li><strong>The Buff:</strong> +50% Research Speed / +25% Building Speed.</li>
         <li><strong>Usage:</strong> Use this specifically for the Tech Center. High-level research can be incredibly expensive and slow; this buff is essential for staying competitive in the arms race.</li>
@@ -48,7 +48,7 @@ Capitol Buffs (also known as Titles) are powerful roles that provide massive spe
 </div>
 
 <div style="margin-bottom: 30px;">
-    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">🍎 Secretary of Interior</h3>
+    <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">🍎 Secretary of Interior</h3>
     <ul>
         <li><strong>The Buff:</strong> +100% increase to Resource Collection (Iron, Food, Coin).</li>
         <li><strong>Usage:</strong> Think of this as your "Morning Harvest." Grab this buff first thing in the morning before you collect the resources floating over your buildings. While you might wait 20 minutes in the queue, the gain on the resources you collect will be much larger than usual.</li>
@@ -57,7 +57,7 @@ Capitol Buffs (also known as Titles) are powerful roles that provide massive spe
 </div>
 
 <div style="margin-bottom: 30px;">
-    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">🛡️ Secretary of Strategy</h3>
+    <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">🛡️ Secretary of Strategy</h3>
     <ul>
         <li><strong>The Buff:</strong> Increases to Healing Speed (+20%) and Hospital Capacity (+20%).</li>
         <li><strong>Usage:</strong> You want to use this if you have a lot of injured troops following a way, or some other unfortunate activity that gets you in trouble. Remember, your troops die when your hospital is full, so the added capacity can be helpful in a pinch.</li>
@@ -66,7 +66,7 @@ Capitol Buffs (also known as Titles) are powerful roles that provide massive spe
 </div>
 
 <div style="margin-bottom: 30px;">
-    <h3 style="color: #fff; font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">⚔️ Secretary of Defense</h3>
+    <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 10px;">⚔️ Secretary of Defense</h3>
     <ul>
         <li><strong>The Buff:</strong> +20% Unit Training Capacity and +20% Training Speed</li>
         <li><strong>Usage:</strong> This is a "Mass Production" buff. Because of the +20% Capacity, you can start much larger batches of troops at once. Use this on VS Training Day (Friday) to churn out more troops per click and save on speed-ups.</li>

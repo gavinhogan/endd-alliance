@@ -41,7 +41,7 @@ Your first priority is relocating your base to the ENDD Hive.
 <span class="section-title" id="culture">4. CULTURE: LEARN, TEACH, AND SPEND WISELY <button class="share-intel" onclick="copyIntel('culture')"></button></span>
 
 - **🧠 Ask Questions:** We are a learning and teaching alliance. Do not worry if you are the 458th person to ask the exact same question. If you don't know the answer, you should be asking it in chat.
-- **� Money:** You will never be pressured to spend money in ENDD. However, if you are spending money, you are expected to do so wisely. Always ask for advice in chat about which packs are good investments and which are traps.
+- **💸 Money:** You will never be pressured to spend money in ENDD. However, if you are spending money, you are expected to do so wisely. Always ask for advice in chat about which packs are good investments and which are traps.
 
 <span class="section-title" id="nap12">5. NAP12 & DIPLOMACY (NO BULLYING) <button class="share-intel" onclick="copyIntel('nap12')"></button></span>
 
@@ -59,8 +59,8 @@ The brown land surrounding the Capitol (just to the west of our hive) is known a
 <span class="section-title" id="vs-mindset">7. THE "VS" Mindset & THE RED DOTS <button class="share-intel" onclick="copyIntel('vs-mindset')"></button></span>
 
 The VS (Alliance Duel) is the heartbeat of this game. This guide won't teach you all the VS mechanics, but you must understand the golden rule: Success requires discipline.
-- **� Ignore the Red Dots:** The game is designed to entice you into spending resources as soon as you get them. Red dots will constantly beg you to click and upgrade. You must learn the discipline to ignore them. You only spend certain resources on specific days, and carefully save (stack) them on others.
-- **� The 1M Point Quota:** You will be asked to contribute 1 Million VS points daily. This is absolutely possible, even very early in the game, but it requires a little effort and care to follow the daily guidance from your teammates.
+- **🔴 Ignore the Red Dots:** The game is designed to entice you into spending resources as soon as you get them. Red dots will constantly beg you to click and upgrade. You must learn the discipline to ignore them. You only spend certain resources on specific days, and carefully save (stack) them on others.
+- **📈 The 1M Point Quota:** You will be asked to contribute 1 Million VS points daily. This is absolutely possible, even very early in the game, but it requires a little effort and care to follow the daily guidance from your teammates.
 
 <span class="section-title" id="marshall-guard">8. THE MARSHALL GUARD <button class="share-intel" onclick="copyIntel('marshall-guard')"></button></span>
 
