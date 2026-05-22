@@ -1,15 +1,22 @@
 {
-  "name": "confuzed",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "endd-alliance-guides",
+  "version": "1.0.39",
+  "description": "Tactical guides and operational procedures for the Knights of the End (ENDD) Alliance on Server 2143",
+  "main": "eleventy.config.js",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "eleventy"
+    "build": "eleventy",
+    "version:bump": "./scripts/increment_version.sh"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "last-war",
+    "last-war-survival",
+    "eleventy",
+    "alliance-guide",
+    "tactical-guides"
+  ],
+  "author": "ConfuzedCorp",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2"
   }
