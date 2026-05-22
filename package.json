@@ -6,7 +6,9 @@
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",
-    "version:bump": "./scripts/increment_version.sh"
+    "version:bump": "./scripts/increment_version.sh",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev"
   },
   "keywords": [
     "last-war",
@@ -18,6 +20,7 @@
   "author": "ConfuzedCorp",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "wrangler": "^4.94.0"
   }
 }
