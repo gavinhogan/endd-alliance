@@ -1,0 +1,86 @@
+---
+layout: base.njk
+title: "RESTRICTED LOGIN"
+---
+<article class="tutorial-content" style="max-width: 500px; margin: 60px auto; text-align: center; border: 2px solid var(--accent-primary); box-shadow: 0 0 25px rgba(0, 157, 255, 0.2);">
+    
+    <div style="margin-bottom: 30px;">
+        <span style="font-size: 3rem; display: inline-block;" class="pulse-active">🔒</span>
+        <h2 style="font-family: var(--font-heading); color: var(--text-header); font-size: 1.8rem; margin: 15px 0 5px 0; text-transform: uppercase;">RESTRICTED INTEL</h2>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px;">KNIGHTS OF THE END BARRICADE PROTOCOL</p>
+    </div>
+
+    <!-- Error Alerts Block -->
+    <div id="error-container" style="display: none; background: rgba(220, 53, 69, 0.08); border-left: 4px solid #dc3545; color: #b02a37; padding: 15px; border-radius: 4px; margin-bottom: 25px; text-align: left; font-size: 0.9rem; border-top: 1px solid rgba(220,53,69,0.15); border-right: 1px solid rgba(220,53,69,0.15); border-bottom: 1px solid rgba(220,53,69,0.15);">
+        <strong style="color: #b02a37; font-family: var(--font-heading); display: block; margin-bottom: 5px; text-transform: uppercase;" id="error-title">ACCESS DENIED</strong>
+        <span id="error-message">You are not authorized to view this operational guide.</span>
+    </div>
+
+    <div style="background: rgba(0, 157, 255, 0.04); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 30px; text-align: left;">
+        <h4 style="font-family: var(--font-heading); color: var(--text-header); font-size: 0.95rem; margin-bottom: 10px; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 5px;">🔒 Security Guidelines</h4>
+        <ul style="margin: 0; padding-left: 0; font-size: 0.85rem; color: var(--text-secondary); list-style: none;">
+            <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">
+                <span style="color: var(--accent-primary); position: absolute; left: 0;">•</span> 
+                You must belong to the official <strong>ENDD Alliance Discord Server</strong>.
+            </li>
+            <li style="margin-bottom: 8px; position: relative; padding-left: 15px;">
+                <span style="color: var(--accent-primary); position: absolute; left: 0;">•</span> 
+                You must hold a required <strong>verified alliance role</strong> inside the server.
+            </li>
+            <li style="margin-bottom: 0; position: relative; padding-left: 15px;">
+                <span style="color: var(--accent-primary); position: absolute; left: 0;">•</span> 
+                Your session is encrypted and mapped directly to your Discord identity.
+            </li>
+        </ul>
+    </div>
+
+    <a id="discord-login-btn" href="/api/auth/login" class="share-intel" style="display: block; width: 100%; padding: 14px 20px; font-size: 1rem; border-radius: 6px; font-weight: 800; letter-spacing: 1px; text-decoration: none; box-shadow: 0 4px 15px rgba(0, 157, 255, 0.2); transition: all 0.3s; text-align: center;">
+        AUTHENTICATE VIA DISCORD
+    </a>
+
+</article>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const error = params.get('error');
+        const redirect = params.get('redirect');
+        
+        // Append redirect target if present to the authentication URL
+        if (redirect) {
+            const loginBtn = document.getElementById('discord-login-btn');
+            loginBtn.href = `/api/auth/login?redirect=${encodeURIComponent(redirect)}`;
+        }
+
+        if (error) {
+            const container = document.getElementById('error-container');
+            const title = document.getElementById('error-title');
+            const message = document.getElementById('error-message');
+            
+            container.style.display = 'block';
+
+            switch (error) {
+                case 'not_in_guild':
+                    title.innerText = "ACCESS DENIED: NOT IN GUILD";
+                    message.innerText = "You are not a member of the official Knights of the End [ENDD] Discord Server. Join our server first to authorize access.";
+                    break;
+                case 'unauthorized_role':
+                    title.innerText = "ACCESS DENIED: ROLE REQUIREMENT";
+                    message.innerText = "You successfully authenticated, but you do not hold the required Alliance Role. Please contact your R4/R5 leadership.";
+                    break;
+                case 'token_exchange_failed':
+                case 'member_lookup_failed':
+                    title.innerText = "CONNECTION TIMEOUT";
+                    message.innerText = "Failed to communicate with Discord API. Please wait a moment and try again.";
+                    break;
+                case 'missing_code':
+                    title.innerText = "AUTH CODE REJECTED";
+                    message.innerText = "The authentication code is missing. Please initiate the login flow again.";
+                    break;
+                default:
+                    title.innerText = "SECURITY VERIFICATION FAILURE";
+                    message.innerText = "An unexpected security check failed. Please contact your War Lord (LtHarryBz) for assistance.";
+            }
+        }
+    });
+</script>

@@ -1,0 +1,9 @@
+# Local Environment Variables for Cloudflare Pages Wrangler Dev Server (Template)
+# Rename this file to .dev.vars and fill in your real credentials.
+
+DISCORD_CLIENT_ID="YOUR_DISCORD_CLIENT_ID_HERE"
+DISCORD_CLIENT_SECRET="YOUR_DISCORD_CLIENT_SECRET_HERE"
+DISCORD_REDIRECT_URI="http://localhost:8788/api/auth/callback"
+DISCORD_GUILD_ID="YOUR_DISCORD_SERVER_ID_HERE"
+DISCORD_ROLE_ID="YOUR_DISCORD_ROLE_ID_HERE"
+JWT_SECRET="YOUR_LONG_RANDOM_SECRET_KEY_HERE"
