@@ -690,3 +690,63 @@ table tbody tr:hover {
     background: rgba(255, 255, 255, 0.2);
     border-color: #ffffff;
 }
+
+/* ==========================================
+   SEASON 1: THE CRIMSON PLAGUE DESIGN SYSTEM
+   ========================================== */
+:root {
+    --season-primary: #ff3860;       /* High-contrast Crimson Red */
+    --season-glow: rgba(255, 56, 96, 0.12); /* Soft crimson overlay */
+    --season-glow-strong: rgba(255, 56, 96, 0.25);
+    --season-bg: #fffbfb;            /* Extremely faint rose background for cards */
+}
+
+/* Season Section Header */
+.season-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--season-glow);
+    color: #b3002d;                 /* High-contrast deep red */
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin: 40px 0 20px 0;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+    border-left: 4px solid var(--season-primary);
+}
+
+/* Season Specific Card */
+.card.season-card {
+    background: var(--season-bg);
+    border-color: rgba(255, 56, 96, 0.25);
+    box-shadow: 0 4px 20px rgba(255, 56, 96, 0.04);
+}
+
+.card.season-card::before {
+    background: var(--season-primary) !important;
+}
+
+.card.season-card:hover {
+    border-color: var(--season-primary);
+    box-shadow: 0 8px 30px rgba(255, 56, 96, 0.15);
+}
+
+/* Season Status Badge */
+.season-badge {
+    display: inline-block;
+    background: var(--season-glow);
+    color: var(--season-primary);
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 56, 96, 0.25);
+    align-self: flex-start;
+}
