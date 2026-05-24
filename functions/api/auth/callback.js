@@ -105,7 +105,7 @@ export async function onRequest(context) {
     const sessionPayload = {
       userId: memberData.user.id,
       username: memberData.user.username,
-      globalName: memberData.user.global_name || memberData.user.username,
+      globalName: memberData.nick || memberData.user.global_name || memberData.user.username,
       avatar: memberData.user.avatar,
       roles: memberData.roles || [],
       exp: sessionExpiry,
