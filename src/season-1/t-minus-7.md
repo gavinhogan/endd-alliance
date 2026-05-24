@@ -13,13 +13,11 @@ date: 2026-05-01
         ⚠️ Operational Prep Briefing • Season 1: The Crimson Plague ⚠️</p>
 </div>
 
-<p style="font-size: 1.1rem; line-height: 1.6; font-weight: 500; margin-bottom: 25px; color: var(--text-secondary); text-align: center; max-width: 750px; margin-left: auto; margin-right: auto;">
-    Commanders of ENDD, Season 1: The Crimson Plague is just around the corner. To make sure we all have a smooth, stress-free start, we need to talk about resource management. The way you handle your inventory right now directly impacts how easily you will progress on Day 1.
-</p>
+Commanders of ENDD, 
 
-<p style="margin-bottom: 30px; text-align: center; color: var(--text-primary); font-weight: 600;">
-    Here is a breakdown of three critical resources you need to stop using and start hoarding today, and exactly why they are so important.
-</p>
+Season 1: The Crimson Plague is just around the corner. To make sure we all have a smooth, stress-free start, we need to talk about resource management. The way you handle your inventory right now directly impacts how easily you will progress on Day 1.
+
+Here is a breakdown of three critical resources you need to stop using and start hoarding today, and exactly why they are so important.
 
 <span class="season-section-title">1. STAMINA MANAGEMENT</span>
 
@@ -27,27 +25,11 @@ Please stop burning your stamina inventory today and keep them for Season 1.
 
 *   **Why:** When Season 1 starts, every single commander will need to independently initiate rallies against **Doom Elites**. Securing "First Blood" on **30 different Elites** is how you get the Mutant Crystals and Immunity Proteins required to jump-start your Virus Research Institute. Additionally, we will be running conquests on lands just like we did at the start of the game, which will also consume significant stamina.
 
-<div style="background: rgba(247, 181, 0, 0.05); border-left: 4px solid var(--accent-gold); padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 25px 0 35px 0; text-align: left;">
-    <strong style="color: #b27a00; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 12px; font-size: 0.95rem; font-weight: 800;">⚠️ CRITICAL STAMINA MATH</strong>
-    <ul style="margin: 0; padding-left: 0; list-style: none;">
-        <li style="margin-bottom: 10px; padding-left: 20px; position: relative; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
-            <span style="color: var(--accent-gold); position: absolute; left: 0; font-weight: 800; font-size: 1.2rem; line-height: 1;">•</span>
-            Running 30 rallies will cost you <strong>600 stamina</strong> right out of the gate, and that doesn’t account for any failed rallies.
-        </li>
-        <li style="margin-bottom: 10px; padding-left: 20px; position: relative; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
-            <span style="color: var(--accent-gold); position: absolute; left: 0; font-weight: 800; font-size: 1.2rem; line-height: 1;">•</span>
-            The faster you knock these out on day one, the faster your virus tech scales up.
-        </li>
-        <li style="margin-bottom: 10px; padding-left: 20px; position: relative; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
-            <span style="color: var(--accent-gold); position: absolute; left: 0; font-weight: 800; font-size: 1.2rem; line-height: 1;">•</span>
-            Save your stamina awards so you can breeze through this without getting stuck waiting on stamina regeneration.
-        </li>
-        <li style="margin-bottom: 0; padding-left: 20px; position: relative; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
-            <span style="color: var(--accent-gold); position: absolute; left: 0; font-weight: 800; font-size: 1.2rem; line-height: 1;">•</span>
-            <strong>Goal:</strong> Aim to start the week with <strong>2,000 stamina</strong>.
-        </li>
-    </ul>
-</div>
+> ⚠️ **THE STAMINA MATH**
+> * Running 30 rallies will cost you **600 stamina** right out of the gate, and that doesn’t account for any failed rallies.
+> * The faster you knock these out on day one, the faster your virus tech scales up.
+> * Save your stamina awards so you can breeze through this without getting stuck waiting on stamina regeneration.
+> * **Goal:** Aim to start the week with **2,000 stamina**.
 
 ---
 
@@ -67,54 +49,17 @@ Season 1 requires a lot of map movement. We will be relocating frequently to cap
 
 Having a healthy stash means you'll never be stuck far away from the action or out of range when **CptHarry**, **LtHarryBz**, or the rest of our leadership team sets a rally point.
 
-<div class="table-container" style="margin-top: 20px;">
-    <table style="width: 100%; border-collapse: collapse; margin-bottom: 0;">
-        <thead>
-            <tr>
-                <th>Source Store</th>
-                <th>Item Type</th>
-                <th>Cost</th>
-                <th>Priority / Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Alliance Store</strong></td>
-                <td>Advanced Teleport</td>
-                <td>7,500 Alliance Points</td>
-                <td><span style="color: #28a745; font-weight: bold;">⚡ BEST SOURCE</span> (Buy out every refresh)</td>
-            </tr>
-            <tr>
-                <td><strong>Alliance Store</strong></td>
-                <td>Alliance Teleport</td>
-                <td>2,500 Alliance Points</td>
-                <td><span style="color: #28a745; font-weight: bold;">⚡ BEST SOURCE</span> (Buy out every refresh)</td>
-            </tr>
-            <tr>
-                <td><strong>VIP Store</strong></td>
-                <td>Advanced Teleport</td>
-                <td>600 Diamonds</td>
-                <td><span style="color: var(--accent-primary); font-weight: bold;">💎 HIGH VALUE</span> (Limit: 3 daily)</td>
-            </tr>
-            <tr>
-                <td><strong>Diamond Store</strong></td>
-                <td>Advanced Teleport</td>
-                <td>1,500 Diamonds</td>
-                <td><span style="color: var(--season-primary); font-weight: bold;">⚠️ EMERGENCY ONLY</span> (Avoid paying full price)</td>
-            </tr>
-            <tr>
-                <td><strong>Diamond Store</strong></td>
-                <td>Alliance Teleport</td>
-                <td>500 Diamonds</td>
-                <td><span style="color: var(--season-primary); font-weight: bold;">⚠️ EMERGENCY ONLY</span> (Avoid paying full price)</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+| Source Store | Item Type | Cost | Priority / Value |
+| :--- | :--- | :--- | :--- |
+| **Alliance Store** | Advanced Teleport | 7,500 Alliance Points | ⚡ **BEST SOURCE** (Buy out every refresh) |
+| **Alliance Store** | Alliance Teleport | 2,500 Alliance Points | ⚡ **BEST SOURCE** (Buy out every refresh) |
+| **VIP Store** | Advanced Teleport | 600 Diamonds | 💎 **HIGH VALUE** (Limit: 3 daily) |
+| **Diamond Store** | Advanced Teleport | 1,500 Diamonds | ⚠️ **EMERGENCY ONLY** (Avoid paying full price) |
+| **Diamond Store** | Alliance Teleport | 500 Diamonds | ⚠️ **EMERGENCY ONLY** (Avoid paying full price) |
 
-<p style="margin-top: 25px; text-align: left; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
-    *   **Pro-Tip on Alliance Points:** Keep hitting the "Help" button, running Marshall, and maxing your Alliance Tech donations to keep your points flowing.
-</p>
+*   **Pro-Tip on Alliance Points:** Keep hitting the "Help" button, running Marshall, and maxing your Alliance Tech donations to keep your points flowing.
+
+---
 
 <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color);">
     <h3 style="font-family: var(--font-heading); color: var(--text-header); font-size: 1.2rem; margin-bottom: 10px;">🧘 COMMAND DIRECTIVE</h3>

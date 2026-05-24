@@ -762,3 +762,38 @@ table tbody tr:hover {
 .card.inactive-card::before {
     background: #a0aec0 !important; /* Grey vertical accent bar for locked content */
 }
+
+/* Premium Blockquote Styling (Alert Banners) */
+.tutorial-content blockquote {
+    background: rgba(247, 181, 0, 0.05); /* Soft gold/amber tint */
+    border-left: 4px solid var(--accent-gold);
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin: 25px 0 35px 0;
+    text-align: left;
+}
+
+.tutorial-content blockquote p {
+    margin: 0 0 10px 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.tutorial-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.tutorial-content blockquote ul {
+    margin: 10px 0 0 0 !important;
+}
+
+.tutorial-content blockquote li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.tutorial-content blockquote li:last-child {
+    margin-bottom: 0;
+}
