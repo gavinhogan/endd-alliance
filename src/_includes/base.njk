@@ -25,12 +25,16 @@
                 <span>ENDD COMMAND CENTER</span>
             </a>
             
-            <nav class="language-switcher notranslate" style="color: #ffffff;">
-                <a href="javascript:void(0)" class="lang-link active" onclick="translatePage('en')" style="color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 4px 8px; border-radius: 4px;">EN</a>
-                <a href="javascript:void(0)" class="lang-link" onclick="translatePage('ko')" style="color: rgba(255,255,255,0.7);">KO</a>
-                <a href="javascript:void(0)" class="lang-link" onclick="translatePage('es')" style="color: rgba(255,255,255,0.7);">ES</a>
-                <a href="javascript:void(0)" class="lang-link" onclick="translatePage('pt')" style="color: rgba(255,255,255,0.7);">PT</a>
-            </nav>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 15px;">
+                <nav class="language-switcher notranslate" style="color: #ffffff;">
+                    <a href="javascript:void(0)" class="lang-link active" onclick="translatePage('en')" style="color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 4px 8px; border-radius: 4px;">EN</a>
+                    <a href="javascript:void(0)" class="lang-link" onclick="translatePage('ko')" style="color: rgba(255,255,255,0.7);">KO</a>
+                    <a href="javascript:void(0)" class="lang-link" onclick="translatePage('es')" style="color: rgba(255,255,255,0.7);">ES</a>
+                    <a href="javascript:void(0)" class="lang-link" onclick="translatePage('pt')" style="color: rgba(255,255,255,0.7);">PT</a>
+                </nav>
+                
+                <div id="auth-hud-container" class="auth-hud-widget"></div>
+            </div>
         </div>
     </header>
 
@@ -86,6 +90,93 @@
                 setTimeout(() => btn.classList.remove('is-copied'), 2000);
             });
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const authContainer = document.getElementById('auth-hud-container');
+            if (!authContainer) return;
+            
+            try {
+                const response = await fetch('/api/auth/session');
+                const data = await response.json();
+                
+                if (data.authenticated && data.user) {
+                    const user = data.user;
+                    const roles = data.roles || [];
+                    const LEADERSHIP_ROLE_ID = "1075074106980061184";
+                    const isLeadership = roles.includes(LEADERSHIP_ROLE_ID);
+                    
+                    let avatarUrl;
+                    if (user.avatar) {
+                        avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+                    } else {
+                        const defaultIdx = Number(BigInt(user.id) >> 22n) % 6;
+                        avatarUrl = `https://cdn.discordapp.com/embed/avatars/${defaultIdx}.png`;
+                    }
+                    
+                    const roleBadge = isLeadership 
+                        ? '<span class="hud-role-badge leadership">🛡️ R4 / LEADERSHIP</span>' 
+                        : '<span class="hud-role-badge member">⚔️ ALLIANCE MEMBER</span>';
+                        
+                    const displayName = user.globalName || user.username;
+                    
+                    authContainer.innerHTML = `
+                        <div class="user-dropdown-container">
+                            <button class="avatar-trigger" id="avatar-trigger-btn" aria-haspopup="true" aria-expanded="false" aria-label="Toggle user menu">
+                                <img src="${avatarUrl}" class="profile-avatar-only" alt="${user.username}'s Avatar">
+                            </button>
+                            
+                            <div class="hud-dropdown-menu" id="hud-dropdown-menu">
+                                <div class="dropdown-header">
+                                    <span class="dropdown-username">${displayName}</span>
+                                    ${roleBadge}
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="/api/auth/logout" class="dropdown-item logout-item">
+                                    <span class="item-icon">🚪</span>
+                                    <span>Log Out</span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+
+                    // Toggle functionality
+                    const trigger = document.getElementById('avatar-trigger-btn');
+                    const menu = document.getElementById('hud-dropdown-menu');
+                    
+                    if (trigger && menu) {
+                        trigger.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const isActive = menu.classList.contains('active');
+                            if (isActive) {
+                                menu.classList.remove('active');
+                                trigger.setAttribute('aria-expanded', 'false');
+                            } else {
+                                menu.classList.add('active');
+                                trigger.setAttribute('aria-expanded', 'true');
+                            }
+                        });
+                        
+                        // Close menu when clicking outside
+                        document.addEventListener('click', (e) => {
+                            if (!menu.contains(e.target) && !trigger.contains(e.target)) {
+                                menu.classList.remove('active');
+                                trigger.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                    }
+                } else {
+                    authContainer.innerHTML = `
+                        <a href="/login/" class="hud-btn login-btn">🔒 AUTHENTICATE</a>
+                    `;
+                }
+            } catch (err) {
+                console.error('Error fetching auth session:', err);
+                authContainer.innerHTML = `
+                    <a href="/login/" class="hud-btn login-btn">🔒 AUTHENTICATE</a>
+                `;
+            }
+        });
     </script>
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
