@@ -24,8 +24,8 @@ export async function onRequest(context) {
   oauthUrl.searchParams.set("client_id", clientId);
   oauthUrl.searchParams.set("redirect_uri", redirectUri);
   oauthUrl.searchParams.set("response_type", "code");
-  // Requesting basic identity, guilds, and the specific guild membership read
-  oauthUrl.searchParams.set("scope", "identify guilds guilds.members.read");
+  // Requesting basic identity and the specific guild membership read (without full guilds access)
+  oauthUrl.searchParams.set("scope", "identify guilds.members.read");
   oauthUrl.searchParams.set("state", state);
   oauthUrl.searchParams.set("prompt", "consent");
 
