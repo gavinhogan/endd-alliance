@@ -27,12 +27,27 @@ Please stop burning your stamina inventory today and keep them for Season 1.
 
 *   **Why:** When Season 1 starts, every single commander will need to independently initiate rallies against **Doom Elites**. Securing "First Blood" on **30 different Elites** is how you get the Mutant Crystals and Immunity Proteins required to jump-start your Virus Research Institute. Additionally, we will be running conquests on lands just like we did at the start of the game, which will also consume significant stamina.
 
-> [!IMPORTANT]
-> **THE STAMINA MATH**
-> * Running 30 rallies will cost you **600 stamina** right out of the gate, and that doesn’t account for any failed rallies.
-> * The faster you knock these out on day one, the faster your virus tech scales up.
-> * Save your stamina awards so you can breeze through this without getting stuck waiting on stamina regeneration.
-> * **Goal:** Aim to start the week with **2,000 stamina**.
+<div style="background: rgba(247, 181, 0, 0.05); border-left: 4px solid var(--accent-gold); padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 25px 0 35px 0; text-align: left;">
+    <strong style="color: #b27a00; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 12px; font-size: 0.95rem; font-weight: 800;">⚠️ CRITICAL STAMINA MATH</strong>
+    <ul style="margin: 0; padding-left: 0; list-style: none;">
+        <li style="margin-bottom: 10px; padding-left: 20px; position: relative; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
+            <span style="color: var(--accent-gold); position: absolute; left: 0; font-weight: 800; font-size: 1.2rem; line-height: 1;">•</span>
+            Running 30 rallies will cost you <strong>600 stamina</strong> right out of the gate, and that doesn’t account for any failed rallies.
+        </li>
+        <li style="margin-bottom: 10px; padding-left: 20px; position: relative; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
+            <span style="color: var(--accent-gold); position: absolute; left: 0; font-weight: 800; font-size: 1.2rem; line-height: 1;">•</span>
+            The faster you knock these out on day one, the faster your virus tech scales up.
+        </li>
+        <li style="margin-bottom: 10px; padding-left: 20px; position: relative; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
+            <span style="color: var(--accent-gold); position: absolute; left: 0; font-weight: 800; font-size: 1.2rem; line-height: 1;">•</span>
+            Save your stamina awards so you can breeze through this without getting stuck waiting on stamina regeneration.
+        </li>
+        <li style="margin-bottom: 0; padding-left: 20px; position: relative; color: var(--text-primary); font-size: 0.95rem; line-height: 1.5;">
+            <span style="color: var(--accent-gold); position: absolute; left: 0; font-weight: 800; font-size: 1.2rem; line-height: 1;">•</span>
+            <strong>Goal:</strong> Aim to start the week with <strong>2,000 stamina</strong>.
+        </li>
+    </ul>
+</div>
 
 ---
 
