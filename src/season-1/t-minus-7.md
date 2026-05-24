@@ -1,6 +1,6 @@
 ---
 layout: base.njk
-title: "📦 Day One - What to Save"
+title: "📦 T-Minus 7 Days - What to Save"
 description: "Critical resources you're going to need when season one starts."
 emoji: "📦"
 date: 2026-05-01
@@ -8,7 +8,7 @@ date: 2026-05-01
 <article class="tutorial-content">
 
 <div style="text-align: center; border-bottom: 1px solid var(--border-color); margin-bottom: 30px; padding-bottom: 20px;">
-    <h1 style="margin: 0; color: #b3002d;">📦 DAY ONE: WHAT TO SAVE 📦</h1>
+    <h1 style="margin: 0; color: #b3002d;">📦 T-MINUS 7 DAYS: WHAT TO SAVE 📦</h1>
     <p style="color: var(--season-primary); font-family: var(--font-heading); font-size: 0.9rem; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">
         ⚠️ Operational Prep Briefing • Season 1: The Crimson Plague ⚠️</p>
 </div>
