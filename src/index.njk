@@ -21,11 +21,19 @@ layout: base.njk
 <nav class="card-grid" style="margin-bottom: 40px;">
     {% if collections.season1 and collections.season1.length > 0 %}
         {% for guide in collections.season1 %}
-        <a href="{{ guide.url | url }}" class="card season-card">
-            <h3>{{ guide.data.emoji }} {{ guide.data.title }}</h3>
-            <p>{{ guide.data.description }}</p>
-            <span class="season-badge">🧬 PLAGUE TACTIC</span>
-        </a>
+            {% if guide.data.inactive %}
+            <div class="card season-card inactive-card" style="opacity: 0.65; filter: grayscale(0.4); border: 1px dashed rgba(255, 56, 96, 0.35); background: #fdfafb; cursor: not-allowed;">
+                <h3 style="color: var(--text-secondary);"><span style="margin-right: 8px;">🔒</span>{{ guide.data.title }}</h3>
+                <p style="color: #6a7a8a; margin-bottom: 8px;">{{ guide.data.description }}</p>
+                <span class="season-badge" style="background: rgba(120, 120, 120, 0.08); color: #6a7a8a; border-color: rgba(120, 120, 120, 0.2);">🔒 CLASSIFIED</span>
+            </div>
+            {% else %}
+            <a href="{{ guide.url | url }}" class="card season-card">
+                <h3>{{ guide.data.emoji }} {{ guide.data.title }}</h3>
+                <p>{{ guide.data.description }}</p>
+                <span class="season-badge">🧬 ACTIVE DIRECTIVE</span>
+            </a>
+            {% endif %}
         {% endfor %}
     {% else %}
         <div style="background: rgba(255, 56, 96, 0.02); border: 1px dashed rgba(255, 56, 96, 0.25); border-radius: 12px; padding: 30px; text-align: center; width: 100%; color: var(--text-secondary); font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem;">

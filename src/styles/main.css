@@ -750,3 +750,15 @@ table tbody tr:hover {
     border: 1px solid rgba(255, 56, 96, 0.25);
     align-self: flex-start;
 }
+
+/* Inactive / Locked Cards Override */
+.card.inactive-card {
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: rgba(255, 56, 96, 0.2) !important;
+}
+
+.card.inactive-card::before {
+    background: #a0aec0 !important; /* Grey vertical accent bar for locked content */
+}
