@@ -797,3 +797,7 @@ table tbody tr:hover {
 .tutorial-content blockquote li:last-child {
     margin-bottom: 0;
 }
+
+.tutorial-content blockquote ul:not(.no-bullets) li:not(.has-icon)::before {
+    color: var(--accent-gold);
+}
