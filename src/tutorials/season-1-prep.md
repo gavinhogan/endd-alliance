@@ -3,7 +3,7 @@ layout: base.njk
 title: "SEASON 1 PREP"
 description: "Essential directives on First Blood rewards and Rally inheritance to maximize success in Season 1."
 emoji: "🩸"
-tags: tutorial
+tags: []
 backLink: true
 date: 2026-05-25
 sourceUrl: ""
