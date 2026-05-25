@@ -3,10 +3,12 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
-      - main  # Trigger build on push to the main branch
+      - main
+      - stage
   pull_request:
     branches:
-      - main  # Optional: preview builds for pull requests
+      - main
+      - stage
 
 jobs:
   build-and-deploy:
@@ -39,3 +41,4 @@ jobs:
           projectName: 'endd-alliance'  # Update if your Cloudflare Pages project name differs
           directory: '_site'            # Eleventy's output directory
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref || github.ref_name }}
