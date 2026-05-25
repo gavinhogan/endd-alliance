@@ -13,7 +13,6 @@ date: 2026-05-01
         ⚠️ Operational Prep Briefing • Season 1: The Crimson Plague ⚠️</p>
 </div>
 
-Commanders of ENDD, 
 
 Season 1: The Crimson Plague is just around the corner. To make sure we all have a smooth, stress-free start, we need to talk about resource management. The way you handle your inventory right now directly impacts how easily you will progress on Day 1.
 
@@ -47,13 +46,13 @@ Season 1 introduces new buildings and new combat mechanics. Your stash of speedu
 
 Season 1 requires a lot of map movement. We will be relocating frequently to capture Strongholds, group up at Outposts, and support each other. The slow drip of free teleports won't be enough to keep everyone grouped up comfortably.
 
-Having a healthy stash means you'll never be stuck far away from the action or out of range when **CptHarry**, **LtHarryBz**, or the rest of our leadership team sets a rally point.
+Having a healthy stash means you'll never be stuck far away from the action or out of range when **Knight Kommander Cal**, **LtHarryBz**, or the rest of our leadership team sets a rally point.
 
 | Source Store | Item Type | Cost | Priority / Value |
 | :--- | :--- | :--- | :--- |
-| **Alliance Store** | Advanced Teleport | 7,500 Alliance Points | ⚡ **BEST SOURCE** (Buy out every refresh) |
-| **Alliance Store** | Alliance Teleport | 2,500 Alliance Points | ⚡ **BEST SOURCE** (Buy out every refresh) |
-| **VIP Store** | Advanced Teleport | 600 Diamonds | 💎 **HIGH VALUE** (Limit: 3 daily) |
+| **Alliance Store** | Advanced Teleport | 7,500 Alliance Points | ⚡ **BEST SOURCE** (Buy out every week) |
+| **Alliance Store** | Alliance Teleport | 2,500 Alliance Points | ⚡ **BEST SOURCE** (Buy out every week) |
+| **VIP Store** | Advanced Teleport | 600 Diamonds | 💎 **HIGH VALUE** (Limit: 3 weekly) |
 | **Diamond Store** | Advanced Teleport | 1,500 Diamonds | ⚠️ **EMERGENCY ONLY** (Avoid paying full price) |
 | **Diamond Store** | Alliance Teleport | 500 Diamonds | ⚠️ **EMERGENCY ONLY** (Avoid paying full price) |
 
