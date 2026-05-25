@@ -16,7 +16,6 @@ date: 2026-05-02
 > 📝 **OPERATIONAL NOTE**
 > This guide is intended to give easy-to-follow guidance and does not endeavor to be a full explainer. We want you to be able to take a clear instruction and, by following it, increase your odds of success. Just like at the start of the game, there is a lot to know, and sometimes it is best to just know what to do and then fully understand it later.
 
-Commanders of ENDD,
 
 Today we are covering two core game mechanics that you have been living with in pre-season and you probably already understand, but your full understanding is essential to your success in Season 1.
 
@@ -24,14 +23,11 @@ Today we are covering two core game mechanics that you have been living with in 
 
 <span class="season-section-title">1. THE TWO TYPES OF "FIRST BLOODS"</span>
 
-Killing a new target gives a "First Blood" reward, but it has been so long since many of you have had a first blood on a Doom Elite, that a refresher on how they differ from Doom Walker first bloods may be helpful.
+First Blood kills are a vital way of gaining critical virus resistance. Killing a new target gives a "First Blood" reward, but it has been so long since many of you have had a first blood on a Doom Elite, that a refresher on how they differ from Doom Walker first bloods may be helpful.
 
 *   **One-Time First Bloods (Doom Elites):** As we discussed yesterday, rallying Doom Elites is essential to gaining key virus resistance materials when Season 1 starts. Specifically, the vital Mutant Crystals you need to develop virus resistance is provided by Doom Elites only as a result of a first blood kill. The key thing you must understand is that **First Blood on a Doom Elite is only paid out once per level, ever.** 
     
     Since most of us have already used all the First Blood kills on Doom Elites up to level 30, you will be glad to hear that **Season 1 raises the level cap to level 60**, giving you **30 new First Bloods** you can gain. You must climb the ladder (Level 31, then Level 32, etc.) to get these vital, one-time drops of Mutant Crystals and Immunity Proteins. Attacking a Doom Elite level for a second time will still give you rewards (as it does today), but not the Mutant Crystals you seek.
-
-> 💡 **PRO TIP: THE "GUMP SQUAD"**
-> When joining someone else's Doom Elite rally, **do not send your main squad**. Use a "gump squad"—a squad with a **single weak hero and minimal troops**. The heavy hitters will secure the kill, and you will get your rewards and capture credit without risking huge losses and hospital bills.
 
 *   **Daily First Bloods (Doom Walkers):** Doom Walkers have a daily First Blood and are reported to also provide Mutant Crystals. Under most scenarios, there is only one Doom Walker First Blood per day, so you should be intentional about the level you target (based on your squad power/readiness) and be diligent about getting one every day.
 
