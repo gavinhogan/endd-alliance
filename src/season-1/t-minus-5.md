@@ -72,12 +72,11 @@ Since increasing resistance doesn't lower your current infection stacks, how do 
 *   **The Syringe (Alliance Curing)**: When you are infected, an alliance member can click on your base on the map and hit a green "syringe" icon. This sends a scout plane to instantly lower your infection bar. This costs the helper a tiny amount of Immune Protein.
 
 > 🧪 **SYRINGE LIMITS & ETIQUETTE**
-> There are daily limits to how many times you can cure others for rewards, and limits on how much your own base can be cured by others in a single day.
 > 
-> Because of this, **you should absolutely ask for cures!** Curing an ally actually rewards the person doing the curing with seasonal points and loot chests. You are not being a burden; you are actually doing your teammates a favor by giving them an easy way to earn their daily rewards.
+> Curing others brings rewards. Because of this, **you should absolutely ask for cures!** Curing an ally actually rewards the person providing the cure with seasonal points and loot chests while consuming a little bit of protein. You are not being a burden; you are actually doing your teammates a favor by giving them an easy way to earn their daily rewards. Note: it was not 100% clear to me who's protein is consumed, and I will update this guide once Season 1 starts to add that clarity.
 > 
-> However, there is no automated "Help" button to request a syringe in the game (like there is for speeding up construction timers). **You must ask manually in Alliance Chat.**
+> Be aware, there are daily limits to how many times you can cure others for rewards, and limits on how much your own base can be cured by others in a single day. This may make it harder for you to get cures when you need them as others might be tapped out. 
 > 
-> When you ask, **you MUST share your base coordinates in the chat.** Drop your coordinates in chat with a quick *"Need a syringe,"* and a teammate will click the coordinates, jump straight to your base, and deploy the scout.
+> When you ask, you can use the in-game request feature. This will be displayed to the left of your screen and acts similar to the fire fighter request.
 
 </article>
