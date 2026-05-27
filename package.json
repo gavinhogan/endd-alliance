@@ -7,7 +7,6 @@
     "start": "eleventy --serve",
     "build": "eleventy",
     "dev": "npx wrangler pages dev _site --port 8788 --d1 DB",
-    "dev:remote": "npx wrangler pages dev _site --port 8788 --d1 DB --remote",
     "version:bump": "./scripts/increment_version.sh"
   },
   "keywords": [
@@ -22,5 +21,10 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
     "wrangler": "^3.57.1"
+  },
+  "dependencies": {
+    "ai": "^6.0.191",
+    "workers-ai-provider": "^3.1.14",
+    "zod": "^4.4.3"
   }
 }
