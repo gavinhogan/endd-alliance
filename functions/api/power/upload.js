@@ -39,17 +39,20 @@ export async function onRequestPost(context) {
     let expectedKeys = [];
     if (env.DB) {
       try {
-        // Ensure table and index exist (Self-healing DB Initializer)
-        await env.DB.exec(`
+        // Ensure table and index exist (Self-healing DB Initializer using robust individual prepare statements)
+        await env.DB.prepare(`
           CREATE TABLE IF NOT EXISTS power_snapshots (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id TEXT NOT NULL,
             username TEXT NOT NULL,
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
             raw_data TEXT NOT NULL
-          );
-          CREATE INDEX IF NOT EXISTS idx_power_user_timestamp ON power_snapshots (user_id, timestamp);
-        `);
+          )
+        `).run();
+        
+        await env.DB.prepare(`
+          CREATE INDEX IF NOT EXISTS idx_power_user_timestamp ON power_snapshots (user_id, timestamp)
+        `).run();
 
         const { results } = await env.DB.prepare(
           "SELECT raw_data FROM power_snapshots WHERE user_id = ? ORDER BY timestamp DESC LIMIT 1"
@@ -82,19 +85,42 @@ export async function onRequestPost(context) {
       return Response.json({ error: "Configuration Error: AI binding is missing." }, { status: 500 });
     }
 
+    console.log("📡 Calling Workers AI with Llama 3.2 Vision...");
     const aiResult = await env.AI.run("@cf/meta/llama-3.2-11b-vision-instruct", {
       prompt,
       image: imageBytes
     });
 
-    let responseText = aiResult.response || aiResult.text || "";
-    
+    console.log("ℹ️ [Workers AI Result Type]:", typeof aiResult);
+    console.log("ℹ️ [Workers AI Result content preview]:", JSON.stringify(aiResult).substring(0, 500));
+
+    // Highly defensive parsing to extract text under any version of Workers AI response schema
+    let responseText = "";
+    if (typeof aiResult === 'string') {
+      responseText = aiResult;
+    } else if (aiResult && typeof aiResult === 'object') {
+      if (typeof aiResult.response === 'string') {
+        responseText = aiResult.response;
+      } else if (typeof aiResult.text === 'string') {
+        responseText = aiResult.text;
+      } else if (aiResult.result && typeof aiResult.result.response === 'string') {
+        responseText = aiResult.result.response;
+      } else if (aiResult.result && typeof aiResult.result.text === 'string') {
+        responseText = aiResult.result.text;
+      } else {
+        responseText = JSON.stringify(aiResult);
+      }
+    } else {
+      responseText = String(aiResult || "");
+    }
+
+    responseText = responseText.trim();
+
     // Strip markdown code fences if wrapped by the LLM
     const cleanMatch = responseText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
     if (cleanMatch && cleanMatch[1]) {
-      responseText = cleanMatch[1];
+      responseText = cleanMatch[1].trim();
     }
-    responseText = responseText.trim();
 
     let parsedData = {};
     try {
