@@ -6,4 +6,7 @@ pages_build_output_dir = "_site"
 [[d1_databases]]
 binding = "DB"
 database_name = "endd-alliance-db"
-database_id = "1ea026f0-8f6c-4a96-8320-47b2af6f4448" # Mapped to staging custom domain tag or a unique UUID
+database_id = "1ea026f0-8f6c-4a96-8320-47b2af6f4448"
+
+[ai]
+binding = "AI"

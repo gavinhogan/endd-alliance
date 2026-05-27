@@ -39,6 +39,18 @@ export async function onRequestPost(context) {
     let expectedKeys = [];
     if (env.DB) {
       try {
+        // Ensure table and index exist (Self-healing DB Initializer)
+        await env.DB.exec(`
+          CREATE TABLE IF NOT EXISTS power_snapshots (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id TEXT NOT NULL,
+            username TEXT NOT NULL,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+            raw_data TEXT NOT NULL
+          );
+          CREATE INDEX IF NOT EXISTS idx_power_user_timestamp ON power_snapshots (user_id, timestamp);
+        `);
+
         const { results } = await env.DB.prepare(
           "SELECT raw_data FROM power_snapshots WHERE user_id = ? ORDER BY timestamp DESC LIMIT 1"
         ).bind(userId).all();
