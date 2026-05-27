@@ -5,8 +5,8 @@ pages_build_output_dir = "_site"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "endd-alliance-db"
-database_id = "1ea026f0-8f6c-4a96-8320-47b2af6f4448"
+database_name = "endd-alliance-db-stage"
+database_id = "dd0ce1a7-90f5-4032-8058-d049ac850b19"
 
 [ai]
 binding = "AI"
