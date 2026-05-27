@@ -75,9 +75,9 @@ export async function onRequestPost(context) {
     const imageBytes = Array.from(new Uint8Array(imageBuffer));
 
     // 4. Construct LLM prompt, integrating Dynamic Schema Anchor Prompting if past keys exist
-    let prompt = "You are a database loader. Extract all of the power details, stats, levels, and numeric values from the image. Output ONLY a valid JSON object matching these keys and values. Do NOT use single quotes, do NOT leave keys unquoted, and do NOT include any conversational text or explanations. Start your response with { and end it with }.";
+    let prompt = "You are an automated stats extraction tool. Extract all of the power details, stats, levels, and numeric values from the image. Output them in a clean, flat list of Key: Value format (e.g. Hero Power: 2314333, Hero Level: 12). Do NOT use bullet points, do NOT add conversational introductions, and do NOT include unit slashes.";
     if (expectedKeys.length > 0) {
-      prompt += `\n\nHere are the expected keys for this user's stats: ${JSON.stringify(expectedKeys)}. Please prioritize extracting values for these exact keys. Casing and spelling should match these exactly. If you find new stats that are not in this list, extract those as well.`;
+      prompt += `\n\nHere are the expected keys for this user's stats: ${JSON.stringify(expectedKeys)}. Please prioritize extracting values for these exact keys. Casing and spelling should match these exactly.`;
     }
 
     // 5. Run Llama 3.2 Vision OCR inference via Cloudflare Workers AI
@@ -99,33 +99,15 @@ export async function onRequestPost(context) {
     if (typeof aiResult === 'string') {
       responseText = aiResult;
     } else if (aiResult && typeof aiResult === 'object') {
-      // 1. Check direct string fields
       if (typeof aiResult.response === 'string') {
         responseText = aiResult.response;
       } else if (typeof aiResult.text === 'string') {
         responseText = aiResult.text;
-      }
-      // 2. Check if aiResult.response is an object (nested response text structure)
-      else if (aiResult.response && typeof aiResult.response === 'object') {
-        if (typeof aiResult.response.text === 'string') {
-          responseText = aiResult.response.text;
-        } else if (typeof aiResult.response.content === 'string') {
-          responseText = aiResult.response.content;
-        } else if (typeof aiResult.response.response === 'string') {
-          responseText = aiResult.response.response;
-        } else {
-          responseText = JSON.stringify(aiResult.response);
-        }
-      }
-      // 3. Check if aiResult.result is an object
-      else if (aiResult.result && typeof aiResult.result === 'object') {
-        if (typeof aiResult.result.response === 'string') {
-          responseText = aiResult.result.response;
-        } else if (typeof aiResult.result.text === 'string') {
-          responseText = aiResult.result.text;
-        } else {
-          responseText = JSON.stringify(aiResult.result);
-        }
+      } else if (aiResult.response && typeof aiResult.response === 'object') {
+        // If it's the Wrangler mock or a nested object, keep the object to let the JSON parser handle it
+        responseText = JSON.stringify(aiResult.response);
+      } else if (aiResult.result && typeof aiResult.result === 'object') {
+        responseText = JSON.stringify(aiResult.result);
       } else {
         responseText = JSON.stringify(aiResult);
       }
@@ -136,25 +118,70 @@ export async function onRequestPost(context) {
     responseText = responseText.trim();
 
     // Strip markdown code fences if wrapped by the LLM
-    const cleanMatch = responseText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+    const cleanMatch = responseText.match(/```(?:json|yaml|text)?\s*([\s\S]*?)\s*```/);
     if (cleanMatch && cleanMatch[1]) {
       responseText = cleanMatch[1].trim();
     }
 
-    // Robust JS-to-JSON Sanitizer: Automatically repairs single quotes and unquoted keys to valid JSON format
-    let sanitizedResponse = responseText
-      .replace(/'/g, '"') // Normalize single quotes to double quotes
-      .replace(/([\{\s,])([a-zA-Z0-9_]+)\s*:/g, '$1"$2":'); // Wrap unquoted keys in double quotes
+    // Helper: Unwraps nested mock wrappers like "new_power", "stats", etc.
+    function unwrapStats(obj) {
+      if (!obj || typeof obj !== 'object') return obj;
+      if (obj.new_power && typeof obj.new_power === 'object') {
+        return unwrapStats(obj.new_power);
+      }
+      if (obj.stats && typeof obj.stats === 'object') {
+        return unwrapStats(obj.stats);
+      }
+      const keys = Object.keys(obj);
+      if (keys.length === 1 && typeof obj[keys[0]] === 'object' && obj[keys[0]] !== null) {
+        return unwrapStats(obj[keys[0]]);
+      }
+      return obj;
+    }
 
+    // Robust Format-Agnostic Parser: Try parsing JSON first, then fall back to Key-Value list parsing
     let parsedData = {};
+    let parseSuccess = false;
+
     try {
-      parsedData = JSON.parse(sanitizedResponse);
-    } catch (parseErr) {
-      try {
-        // Fallback: try parsing original if sanitization was aggressive
-        parsedData = JSON.parse(responseText);
-      } catch (originalErr) {
-        throw new Error(`Failed to parse AI output as JSON. Cleaned: "${sanitizedResponse}". Original: "${responseText}"`);
+      const rawParsed = JSON.parse(responseText);
+      const unwrapped = unwrapStats(rawParsed);
+      if (unwrapped && typeof unwrapped === 'object' && !Array.isArray(unwrapped)) {
+        parsedData = unwrapped;
+        parseSuccess = true;
+      }
+    } catch (e) {
+      // JSON failed; continue to line-by-line flat list fallback
+    }
+
+    if (!parseSuccess) {
+      console.log("⚠️ JSON parsing failed or yielded flat array. Falling back to line-by-line Key-Value list parsing...");
+      const lines = responseText.split('\n');
+      for (const line of lines) {
+        // Match line containing "Key: Value" (handles leading bullet points or numbers)
+        const match = line.match(/^[\s*\-\+•]*([a-zA-Z0-9_\s\-&'’]+)\s*:\s*(.+)$/);
+        if (match) {
+          const key = match[1].replace(/^[\s*\-\+•\d\.]+\s*/, '').trim();
+          let valStr = match[2].trim();
+
+          if (!key || valStr === '{' || valStr === '}' || valStr === '[object Object]') continue;
+
+          // Clean numeric values (strip commas, units, slashes and convert to numbers)
+          let cleanStr = valStr.replace(/,/g, '').trim();
+          if (cleanStr.includes('/')) {
+            cleanStr = cleanStr.split('/')[0].trim();
+          }
+
+          // Strip outer quotes if present
+          cleanStr = cleanStr.replace(/^["']|["']$/g, '');
+
+          const num = Number(cleanStr);
+          if (!isNaN(num)) {
+            parsedData[key] = num;
+          } else {
+            parsedData[key] = cleanStr;
+          }
+        }
       }
     }
 
