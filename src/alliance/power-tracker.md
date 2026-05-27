@@ -195,8 +195,8 @@ backLink: true
         });
     }
 
-    // Client-side canvas optimization resizer
-    function processAndUpload(file) {
+    // Direct raw high-resolution upload
+    async function processAndUpload(file) {
         const dropzone = document.getElementById('screenshot-dropzone');
         const loader = document.getElementById('scanning-loader');
         const statusText = document.getElementById('scanning-status-text');
@@ -205,69 +205,34 @@ backLink: true
         dropzone.style.display = 'none';
         resultsPanel.style.display = 'none';
         loader.style.display = 'block';
-        statusText.textContent = "Canvas loading image context...";
+        statusText.textContent = "Deploying high-resolution screenshot to Cloudflare LLM Vision OCR...";
 
-        const img = new Image();
-        img.onload = () => {
-            statusText.textContent = "Optimizing dimension bounds to max 1000px...";
-            const canvas = document.createElement('canvas');
-            const max_size = 1000;
-            let width = img.width;
-            let height = img.height;
+        try {
+            const response = await fetch('/api/power/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': file.type
+                },
+                body: file
+            });
+            const resData = await response.json();
 
-            if (width > height) {
-                if (width > max_size) {
-                    height *= max_size / width;
-                    width = max_size;
-                }
-            } else {
-                if (height > max_size) {
-                    width *= max_size / height;
-                    height = max_size;
-                }
+            if (!response.ok || resData.error) {
+                throw new Error(resData.error || "Failed to scan image.");
             }
 
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
+            // Display results
+            displayResults(resData.data);
+            
+            // Reload time-series graph
+            await loadHistory();
 
-            statusText.textContent = "Downsampling byte compression array (PNG)...";
-            canvas.toBlob(async (blob) => {
-                statusText.textContent = "Deploying bytes to Cloudflare LLM Vision OCR...";
-                try {
-                    const response = await fetch('/api/power/upload', {
-                        method: 'POST',
-                        body: blob
-                    });
-                    const resData = await response.json();
-
-                    if (!response.ok || resData.error) {
-                        throw new Error(resData.error || "Failed to scan image.");
-                    }
-
-                    // Display results
-                    displayResults(resData.data);
-                    
-                    // Reload time-series graph
-                    await loadHistory();
-
-                } catch (err) {
-                    alert(`❌ OCR Scan Failed: ${err.message}`);
-                } finally {
-                    loader.style.display = 'none';
-                    dropzone.style.display = 'block';
-                }
-            }, 'image/png');
-        };
-
-        img.onerror = () => {
-            alert("❌ Failed to read image file context.");
+        } catch (err) {
+            alert(`❌ OCR Scan Failed: ${err.message}`);
+        } finally {
             loader.style.display = 'none';
             dropzone.style.display = 'block';
-        };
-
-        img.src = URL.createObjectURL(file);
+        }
     }
 
     function displayResults(data) {
