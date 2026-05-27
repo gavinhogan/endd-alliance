@@ -99,14 +99,33 @@ export async function onRequestPost(context) {
     if (typeof aiResult === 'string') {
       responseText = aiResult;
     } else if (aiResult && typeof aiResult === 'object') {
+      // 1. Check direct string fields
       if (typeof aiResult.response === 'string') {
         responseText = aiResult.response;
       } else if (typeof aiResult.text === 'string') {
         responseText = aiResult.text;
-      } else if (aiResult.result && typeof aiResult.result.response === 'string') {
-        responseText = aiResult.result.response;
-      } else if (aiResult.result && typeof aiResult.result.text === 'string') {
-        responseText = aiResult.result.text;
+      }
+      // 2. Check if aiResult.response is an object (nested response text structure)
+      else if (aiResult.response && typeof aiResult.response === 'object') {
+        if (typeof aiResult.response.text === 'string') {
+          responseText = aiResult.response.text;
+        } else if (typeof aiResult.response.content === 'string') {
+          responseText = aiResult.response.content;
+        } else if (typeof aiResult.response.response === 'string') {
+          responseText = aiResult.response.response;
+        } else {
+          responseText = JSON.stringify(aiResult.response);
+        }
+      }
+      // 3. Check if aiResult.result is an object
+      else if (aiResult.result && typeof aiResult.result === 'object') {
+        if (typeof aiResult.result.response === 'string') {
+          responseText = aiResult.result.response;
+        } else if (typeof aiResult.result.text === 'string') {
+          responseText = aiResult.result.text;
+        } else {
+          responseText = JSON.stringify(aiResult.result);
+        }
       } else {
         responseText = JSON.stringify(aiResult);
       }
