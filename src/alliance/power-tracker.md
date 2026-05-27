@@ -62,7 +62,7 @@ backLink: true
             ⚡ ENGAGING LLAMA 3.2 VISION INFERENCE...
         </div>
         <p id="scanning-status-text" style="font-size: 0.9rem; color: var(--text-secondary); margin: 0; font-style: italic;">
-            Resizing image to 400px via canvas to optimize transfer speed...
+            Resizing image to 1000px via canvas to optimize transfer speed...
         </p>
     </div>
 
@@ -209,9 +209,9 @@ backLink: true
 
         const img = new Image();
         img.onload = () => {
-            statusText.textContent = "Optimizing dimension bounds to max 400px...";
+            statusText.textContent = "Optimizing dimension bounds to max 1000px...";
             const canvas = document.createElement('canvas');
-            const max_size = 400;
+            const max_size = 1000;
             let width = img.width;
             let height = img.height;
 

@@ -56,14 +56,18 @@ function processImage(filePath) {
 
     const isHeic = ext === '.heic' || ext === '.heif';
     
-    console.log(`⚙️ [sips] Optimizing and resizing image dimension to max 400px for API efficiency...`);
+    // We downsample all images to a max of 1000px width/height to easily fit Cloudflare's context limit
+    // and keep text and numbers sharp. Sips is built into macOS and handles this natively.
+    console.log(`⚙️ [sips] Optimizing and resizing image dimension to max 1000px for API efficiency...`);
     tempPngPath = path.join(path.dirname(filePath), `temp_optimized_${Date.now()}.png`);
     
     try {
         if (isHeic) {
-            execSync(`sips -s format png -Z 400 "${filePath}" --out "${tempPngPath}"`, { stdio: 'ignore' });
+            // Convert HEIC and resize at the same time
+            execSync(`sips -s format png -Z 1000 "${filePath}" --out "${tempPngPath}"`, { stdio: 'ignore' });
         } else {
-            execSync(`sips -Z 400 "${filePath}" --out "${tempPngPath}"`, { stdio: 'ignore' });
+            // Resize PNG/JPEG
+            execSync(`sips -Z 1000 "${filePath}" --out "${tempPngPath}"`, { stdio: 'ignore' });
         }
         targetPath = tempPngPath;
         needsCleanup = true;
