@@ -116,38 +116,67 @@ export async function onRequestPost(context) {
 
     console.log("ℹ️ [Vercel AI SDK Raw Text Output]:", result.text.substring(0, 500));
 
-    // 6. Robust line-by-line Key-Value list parsing
+    // 6. Indentation-Aware Dotted-Path Context Parser
     const parsedData = {};
     const lines = result.text.split('\n');
-    
+    const contextStack = []; // Holds active parent categories with their indentation depth [{ key, depth }]
+
     for (const line of lines) {
-      // Pre-clean markdown bold/italic formatting to avoid matching issues
+      const trimmed = line.trim();
+      if (trimmed === '') continue;
+
+      // A. Calculate line indentation depth (normalize tabs to 4 spaces)
+      const leadingWhitespace = line.match(/^([ \t]*)/)[0];
+      const depth = leadingWhitespace.replace(/\t/g, '    ').length;
+
+      // B. Clean formatting asterisks/markdown symbols from the text line
       const cleanLine = line.replace(/[*_#`]+/g, '').trim();
 
-      // Match line containing "Key: Value" (supporting leading bullet points and numbers)
-      const match = cleanLine.match(/^[\s\-\+•]*([a-zA-Z0-9_\s\-&'’]+)\s*:\s*(.+)$/);
-      if (match) {
-        const key = match[1].trim();
-        let valStr = match[2].trim();
+      let key = "";
+      let valStr = "";
 
-        if (!key || valStr === '{' || valStr === '}' || valStr === '[object Object]') continue;
+      // C. Split Key and Value on colon
+      const colonIndex = cleanLine.indexOf(':');
+      if (colonIndex !== -1) {
+        key = cleanLine.substring(0, colonIndex).replace(/^[\s\-\+•]*/, '').trim();
+        valStr = cleanLine.substring(colonIndex + 1).trim();
+      } else {
+        // No colon: This is a pure category header block!
+        key = cleanLine.replace(/^[\s\-\+•]*/, '').trim();
+        valStr = "";
+      }
 
-        // Clean numeric values (strip commas, units, slashes and convert to numbers)
-        let cleanStr = valStr.replace(/,/g, '').trim();
-        if (cleanStr === '') continue;
+      if (!key) continue;
+
+      // D. Pop parent contexts from stack that are at a greater or equal depth
+      while (contextStack.length > 0 && contextStack[contextStack.length - 1].depth >= depth) {
+        contextStack.pop();
+      }
+
+      // E. Clean numeric value parameters
+      let cleanStr = valStr.replace(/,/g, '').trim();
+      if (cleanStr === '') {
+        // Category Header (empty value): Push to parenting stack context
+        contextStack.push({ key, depth });
+      } else {
+        // Value Key: Assemble namespaces
+        let fullKey = key;
+        if (contextStack.length > 0) {
+          fullKey = contextStack.map(c => c.key).join('.') + '.' + key;
+        }
 
         if (cleanStr.includes('/')) {
           cleanStr = cleanStr.split('/')[0].trim();
         }
 
-        // Strip outer quotes if present
+        // Strip quotes
         cleanStr = cleanStr.replace(/^["']|["']$/g, '');
 
         const num = Number(cleanStr);
         if (!isNaN(num)) {
-          parsedData[key] = num;
+          parsedData[fullKey] = num;
         } else {
-          parsedData[key] = cleanStr;
+          parsedData[fullKey] = cleanStr;
         }
       }
     }
