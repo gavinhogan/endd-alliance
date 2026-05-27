@@ -80,112 +80,75 @@ export async function onRequestPost(context) {
       prompt += `\n\nHere are the expected keys for this user's stats: ${JSON.stringify(expectedKeys)}. Please prioritize extracting values for these exact keys. Casing and spelling should match these exactly.`;
     }
 
-    // 5. Run Llama 3.2 Vision OCR inference via Cloudflare Workers AI
+    // 5. Run Llama 3.2 Vision OCR inference via Vercel AI SDK using Cloudflare Workers AI provider
     if (!env.AI) {
       return Response.json({ error: "Configuration Error: AI binding is missing." }, { status: 500 });
     }
 
-    console.log("📡 Calling Workers AI with Llama 3.2 Vision...");
-    const aiResult = await env.AI.run("@cf/meta/llama-3.2-11b-vision-instruct", {
-      prompt,
-      image: imageBytes
+    console.log("📡 Dynamically loading Vercel AI SDK and Workers AI community provider...");
+    const { generateText } = await import('ai');
+    const { createWorkersAI } = await import('workers-ai-provider');
+
+    console.log("📡 Initializing Vercel AI SDK with Cloudflare env.AI binding...");
+    const workersai = createWorkersAI({
+      binding: env.AI
     });
 
-    console.log("ℹ️ [Workers AI Result Type]:", typeof aiResult);
-    console.log("ℹ️ [Workers AI Result content preview]:", JSON.stringify(aiResult).substring(0, 500));
+    console.log("📡 Calling Workers AI via Vercel AI SDK...");
+    const result = await generateText({
+      model: workersai('@cf/meta/llama-3.2-11b-vision-instruct'),
+      messages: [
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'text',
+              text: prompt
+            },
+            {
+              type: 'image',
+              image: new Uint8Array(imageBuffer)
+            }
+          ]
+        }
+      ]
+    });
 
-    // Highly defensive parsing to extract text under any version of Workers AI response schema
-    let responseText = "";
-    if (typeof aiResult === 'string') {
-      responseText = aiResult;
-    } else if (aiResult && typeof aiResult === 'object') {
-      if (typeof aiResult.response === 'string') {
-        responseText = aiResult.response;
-      } else if (typeof aiResult.text === 'string') {
-        responseText = aiResult.text;
-      } else if (aiResult.response && typeof aiResult.response === 'object') {
-        // If it's the Wrangler mock or a nested object, keep the object to let the JSON parser handle it
-        responseText = JSON.stringify(aiResult.response);
-      } else if (aiResult.result && typeof aiResult.result === 'object') {
-        responseText = JSON.stringify(aiResult.result);
-      } else {
-        responseText = JSON.stringify(aiResult);
-      }
-    } else {
-      responseText = String(aiResult || "");
-    }
+    console.log("ℹ️ [Vercel AI SDK Raw Text Output]:", result.text.substring(0, 500));
 
-    responseText = responseText.trim();
+    // 6. Robust line-by-line Key-Value list parsing
+    const parsedData = {};
+    const lines = result.text.split('\n');
+    
+    for (const line of lines) {
+      // Match line containing "Key: Value" (supporting leading bullet points, bold asterisks, and numbers)
+      const match = line.match(/^[\s*\-\+•]*([a-zA-Z0-9_\s\-&'’]+)\s*:\s*(.+)$/);
+      if (match) {
+        // Strip markdown formatting symbols
+        const key = match[1].replace(/[*_#`\s]+/g, ' ').trim();
+        let valStr = match[2].replace(/[*_#`\s]+/g, ' ').trim();
 
-    // Strip markdown code fences if wrapped by the LLM
-    const cleanMatch = responseText.match(/```(?:json|yaml|text)?\s*([\s\S]*?)\s*```/);
-    if (cleanMatch && cleanMatch[1]) {
-      responseText = cleanMatch[1].trim();
-    }
+        if (!key || valStr === '{' || valStr === '}' || valStr === '[object Object]') continue;
 
-    // Helper: Unwraps nested mock wrappers like "new_power", "stats", etc.
-    function unwrapStats(obj) {
-      if (!obj || typeof obj !== 'object') return obj;
-      if (obj.new_power && typeof obj.new_power === 'object') {
-        return unwrapStats(obj.new_power);
-      }
-      if (obj.stats && typeof obj.stats === 'object') {
-        return unwrapStats(obj.stats);
-      }
-      const keys = Object.keys(obj);
-      if (keys.length === 1 && typeof obj[keys[0]] === 'object' && obj[keys[0]] !== null) {
-        return unwrapStats(obj[keys[0]]);
-      }
-      return obj;
-    }
+        // Clean numeric values (strip commas, units, slashes and convert to numbers)
+        let cleanStr = valStr.replace(/,/g, '').trim();
+        if (cleanStr.includes('/')) {
+          cleanStr = cleanStr.split('/')[0].trim();
+        }
 
-    // Robust Format-Agnostic Parser: Try parsing JSON first, then fall back to Key-Value list parsing
-    let parsedData = {};
-    let parseSuccess = false;
+        // Strip outer quotes if present
+        cleanStr = cleanStr.replace(/^["']|["']$/g, '');
 
-    try {
-      const rawParsed = JSON.parse(responseText);
-      const unwrapped = unwrapStats(rawParsed);
-      if (unwrapped && typeof unwrapped === 'object' && !Array.isArray(unwrapped)) {
-        parsedData = unwrapped;
-        parseSuccess = true;
-      }
-    } catch (e) {
-      // JSON failed; continue to line-by-line flat list fallback
-    }
-
-    if (!parseSuccess) {
-      console.log("⚠️ JSON parsing failed or yielded flat array. Falling back to line-by-line Key-Value list parsing...");
-      const lines = responseText.split('\n');
-      for (const line of lines) {
-        // Match line containing "Key: Value" (handles leading bullet points or numbers)
-        const match = line.match(/^[\s*\-\+•]*([a-zA-Z0-9_\s\-&'’]+)\s*:\s*(.+)$/);
-        if (match) {
-          const key = match[1].replace(/^[\s*\-\+•\d\.]+\s*/, '').trim();
-          let valStr = match[2].trim();
-
-          if (!key || valStr === '{' || valStr === '}' || valStr === '[object Object]') continue;
-
-          // Clean numeric values (strip commas, units, slashes and convert to numbers)
-          let cleanStr = valStr.replace(/,/g, '').trim();
-          if (cleanStr.includes('/')) {
-            cleanStr = cleanStr.split('/')[0].trim();
-          }
-
-          // Strip outer quotes if present
-          cleanStr = cleanStr.replace(/^["']|["']$/g, '');
-
-          const num = Number(cleanStr);
-          if (!isNaN(num)) {
-            parsedData[key] = num;
-          } else {
-            parsedData[key] = cleanStr;
-          }
+        const num = Number(cleanStr);
+        if (!isNaN(num)) {
+          parsedData[key] = num;
+        } else {
+          parsedData[key] = cleanStr;
         }
       }
     }
 
-    // 6. Fuzzy-Key Harmonization & Value Sanitization Layer
+    // 7. Fuzzy-Key Harmonization & Value Sanitization Layer
     const keyMap = {};
     expectedKeys.forEach(k => {
       keyMap[k.toLowerCase().trim()] = k;
@@ -196,11 +159,10 @@ export async function onRequestPost(context) {
       const cleanKey = key.trim();
       const lowerKey = cleanKey.toLowerCase();
 
-      // Clean numeric values (strip commas, units, slashes and convert to numbers)
+      // Clean numeric values (double check parsing)
       let parsedVal = val;
       if (typeof val === 'string') {
         let cleanStr = val.replace(/,/g, '').trim();
-        // If there's a slash like '1219/1222' (current/max level), take the current level
         if (cleanStr.includes('/')) {
           cleanStr = cleanStr.split('/')[0].trim();
         }
@@ -219,7 +181,7 @@ export async function onRequestPost(context) {
       }
     }
 
-    // 7. Store time-series entry in D1 Database
+    // 8. Store time-series entry in D1 Database
     if (env.DB) {
       const rawDataString = JSON.stringify(cleanedData);
       await env.DB.prepare(
@@ -229,7 +191,7 @@ export async function onRequestPost(context) {
       console.warn("⚠️ [D1 Database] DB binding is missing. Bypassing storage.");
     }
 
-    // 8. Return response to frontend dashboard
+    // 9. Return response to frontend dashboard
     return Response.json({ success: true, data: cleanedData });
 
   } catch (err) {

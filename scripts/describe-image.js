@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 /**
- * Cloudflare Workers AI Vision CLI Tool
- * Describes images (PNG, JPEG, HEIF/HEIC) using Meta's Llama 3.2 Vision Model.
+ * Cloudflare Workers AI Vision CLI Tool using Vercel AI SDK
+ * Describes and extracts structured stats from images (PNG, JPEG, HEIF/HEIC).
  * 
  * Usage:
- *   node scripts/describe-image.js <path-to-image> ["custom prompt"]
+ *   node scripts/describe-image.js <path-to-image>
  */
 
 const fs = require('fs');
@@ -43,7 +43,7 @@ function getAuthToken() {
 }
 
 // 3. Process image, convert HEIC/HEIF, and downsample to fit API context limits via macOS sips
-// Returns an array of integers (bytes) representing the image data.
+// Returns a Buffer representing the image data.
 function processImage(filePath) {
     if (!fs.existsSync(filePath)) {
         throw new Error(`File does not exist: "${filePath}"`);
@@ -54,20 +54,15 @@ function processImage(filePath) {
     let tempPngPath = null;
     let needsCleanup = false;
 
-    // A. Handle HEIF/HEIC conversion or resizing
     const isHeic = ext === '.heic' || ext === '.heif';
     
-    // We downsample all images to a max of 400px width/height to easily fit Cloudflare's context limit
-    // and speed up transfer. Sips is built into macOS and handles this natively.
     console.log(`⚙️ [sips] Optimizing and resizing image dimension to max 400px for API efficiency...`);
     tempPngPath = path.join(path.dirname(filePath), `temp_optimized_${Date.now()}.png`);
     
     try {
         if (isHeic) {
-            // Convert HEIC and resize at the same time
             execSync(`sips -s format png -Z 400 "${filePath}" --out "${tempPngPath}"`, { stdio: 'ignore' });
         } else {
-            // Resize PNG/JPEG
             execSync(`sips -Z 400 "${filePath}" --out "${tempPngPath}"`, { stdio: 'ignore' });
         }
         targetPath = tempPngPath;
@@ -83,7 +78,6 @@ function processImage(filePath) {
     }
 
     const buffer = fs.readFileSync(targetPath);
-    const byteArray = Array.from(buffer);
 
     // Clean up temporary optimized file
     if (needsCleanup && tempPngPath && fs.existsSync(tempPngPath)) {
@@ -94,7 +88,7 @@ function processImage(filePath) {
         }
     }
 
-    return byteArray;
+    return buffer;
 }
 
 // Main execution function
@@ -103,109 +97,106 @@ async function main() {
     
     if (args.length === 0 || args[0] === '--help' || args[0] === '-h') {
         console.log(`
-🔮 Cloudflare Workers AI Vision CLI
-==================================
-Describe and analyze images using Meta's Llama 3.2 Vision model.
+🔮 Cloudflare Workers AI Vision CLI (Vercel AI SDK Edition)
+===========================================================
+Extract structured power stats from screenshots using Vercel AI SDK and Llama 3.2 Vision.
 
 Usage:
-  node scripts/describe-image.js <path-to-image> ["custom prompt"]
-
-Examples:
-  node scripts/describe-image.js my-screenshot.png
-  node scripts/describe-image.js docs/power_level.heic "Extract all player names and power levels in a clean table"
+  node scripts/describe-image.js <path-to-image>
 `);
         process.exit(0);
     }
 
     const imagePath = args[0];
-    const promptText = args[1] || "Describe this image in detail, including any text, characters, colors, and layout structure you see.";
 
     console.log(`🔄 Reading and preparing image: "${imagePath}"...`);
-    let imageBytes;
+    let imageBuffer;
     try {
-        imageBytes = processImage(imagePath);
+        imageBuffer = processImage(imagePath);
     } catch (err) {
         console.error(`❌ [Error] ${err.message}`);
         process.exit(1);
     }
 
     const accountId = getAccountId();
-    const token = getAuthToken();
+    const apiKey = getAuthToken();
 
-    if (!token) {
+    if (!apiKey) {
         console.error(`❌ [Authentication Error] Could not find an active Cloudflare API Token.
 Please set the CLOUDFLARE_API_TOKEN environment variable, or run 'npx wrangler login' to authenticate locally.`);
         process.exit(1);
     }
 
-    console.log(`📡 Connecting to Cloudflare Workers AI (Llama 3.2 Vision)...`);
-    const model = "@cf/meta/llama-3.2-11b-vision-instruct";
-    const url = `https://api.cloudflare.com/client/v4/accounts/${accountId}/ai/run/${model}`;
+    console.log(`📡 Dynamically loading Vercel AI SDK and Workers AI community provider...`);
     
-    const headers = {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-    };
-    
-    // Using the native Cloudflare Workers AI schema for Vision (top-level prompt and image)
-    const payload = {
-        prompt: promptText,
-        image: imageBytes
-    };
+    // Dynamic import to support ESM inside CommonJS
+    const { generateText } = await import('ai');
+    const { createWorkersAI } = await import('workers-ai-provider');
 
+    console.log(`📡 Initializing Vercel AI SDK with Cloudflare REST credentials...`);
+    const workersai = createWorkersAI({
+        accountId,
+        apiKey
+    });
+
+    console.log(`📡 Executing generateText scan via Llama 3.2 Vision...`);
     try {
-        let response = await fetch(url, {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(payload)
+        const result = await generateText({
+            model: workersai('@cf/meta/llama-3.2-11b-vision-instruct'),
+            messages: [
+                {
+                    role: 'user',
+                    content: [
+                        {
+                            type: 'text',
+                            text: 'Extract all of the power stats, details, and level values from the image. Output them in a clean, flat list of Key: Value format.'
+                        },
+                        {
+                            type: 'image',
+                            image: imageBuffer
+                        }
+                    ]
+                }
+            ]
         });
 
-        let data = await response.json();
+        // 6. Robust line-by-line Key-Value list parsing
+        const parsedData = {};
+        const lines = result.text.split('\n');
+        
+        for (const line of lines) {
+            // Match line containing "Key: Value" (supporting leading bullet points, bold asterisks, and numbers)
+            const match = line.match(/^[\s*\-\+•]*([a-zA-Z0-9_\s\-&'’]+)\s*:\s*(.+)$/);
+            if (match) {
+                // Strip markdown formatting symbols like asterisks or bullet signs
+                const key = match[1].replace(/[*_#`\s]+/g, ' ').trim();
+                let valStr = match[2].replace(/[*_#`\s]+/g, ' ').trim();
 
-        // 4. Handle gated license terms agreement automatically if needed
-        if (!data.success) {
-            const isGatedError = data.errors && data.errors.some(
-                e => e.message.toLowerCase().includes('terms') || 
-                     e.message.toLowerCase().includes('gated') || 
-                     e.message.toLowerCase().includes('license') || 
-                     e.code === 7009
-            );
+                if (!key || valStr === '{' || valStr === '}' || valStr === '[object Object]') continue;
 
-            if (isGatedError) {
-                console.log(`✍️ [Cloudflare] Gated model license terms detected. Agreeing to Meta Llama 3.2 license...`);
-                const agreeResponse = await fetch(url, {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify({ prompt: 'agree' })
-                });
-                
-                const agreeData = await agreeResponse.json();
-                const isAgreeSuccess = agreeData.success || (agreeData.errors && agreeData.errors.some(
-                    e => e.code === 5016 || e.message.toLowerCase().includes('thank you for agreeing')
-                ));
+                // Clean numeric values (strip commas, units, slashes and convert to numbers)
+                let cleanStr = valStr.replace(/,/g, '').trim();
+                if (cleanStr.includes('/')) {
+                    cleanStr = cleanStr.split('/')[0].trim();
+                }
 
-                if (isAgreeSuccess) {
-                    console.log(`✅ [Cloudflare] License accepted successfully! Retrying image description request...`);
-                    response = await fetch(url, {
-                        method: 'POST',
-                        headers,
-                        body: JSON.stringify(payload)
-                    });
-                    data = await response.json();
+                // Strip outer quotes if present
+                cleanStr = cleanStr.replace(/^["']|["']$/g, '');
+
+                const num = Number(cleanStr);
+                if (!isNaN(num)) {
+                    parsedData[key] = num;
                 } else {
-                    throw new Error(`Failed to accept Llama 3.2 license: ${JSON.stringify(agreeData.errors)}`);
+                    parsedData[key] = cleanStr;
                 }
             }
         }
 
-        if (!data.success) {
-            throw new Error(`Cloudflare API Error: ${JSON.stringify(data.errors || data.messages)}`);
-        }
-
-        console.log(`\n✨ [Llama 3.2 Vision Description]:`);
-        console.log(`-----------------------------------`);
-        console.log(data.result.response || data.result.text);
-        console.log(`-----------------------------------`);
+        console.log(`\n✨ [Vercel AI SDK Structured JSON Output]:`);
+        console.log(`--------------------------------------`);
+        console.log(JSON.stringify(parsedData, null, 2));
+        console.log(`--------------------------------------`);
+        console.log(`✅ Success! Extracted ${Object.keys(parsedData).length} stats dynamically.`);
 
     } catch (err) {
         console.error(`❌ [API Error] Failed to complete vision inference: ${err.message}`);
