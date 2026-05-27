@@ -160,22 +160,28 @@ Please set the CLOUDFLARE_API_TOKEN environment variable, or run 'npx wrangler l
             ]
         });
 
+        console.log("ℹ️ [Workers AI Raw Text]:", result.text);
+
         // 6. Robust line-by-line Key-Value list parsing
         const parsedData = {};
         const lines = result.text.split('\n');
         
         for (const line of lines) {
-            // Match line containing "Key: Value" (supporting leading bullet points, bold asterisks, and numbers)
-            const match = line.match(/^[\s*\-\+•]*([a-zA-Z0-9_\s\-&'’]+)\s*:\s*(.+)$/);
+            // Pre-clean markdown bold/italic formatting to avoid matching issues
+            const cleanLine = line.replace(/[*_#`]+/g, '').trim();
+
+            // Match line containing "Key: Value" (supporting leading bullet points and numbers)
+            const match = cleanLine.match(/^[\s\-\+•]*([a-zA-Z0-9_\s\-&'’]+)\s*:\s*(.+)$/);
             if (match) {
-                // Strip markdown formatting symbols like asterisks or bullet signs
-                const key = match[1].replace(/[*_#`\s]+/g, ' ').trim();
-                let valStr = match[2].replace(/[*_#`\s]+/g, ' ').trim();
+                const key = match[1].trim();
+                let valStr = match[2].trim();
 
                 if (!key || valStr === '{' || valStr === '}' || valStr === '[object Object]') continue;
 
                 // Clean numeric values (strip commas, units, slashes and convert to numbers)
                 let cleanStr = valStr.replace(/,/g, '').trim();
+                if (cleanStr === '') continue;
+
                 if (cleanStr.includes('/')) {
                     cleanStr = cleanStr.split('/')[0].trim();
                 }
