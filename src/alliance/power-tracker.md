@@ -125,7 +125,7 @@ backLink: true
 
         // Check authentication session
         try {
-            const response = await fetch(`/api/auth/session?_=${Date.now()}`);
+            const response = await fetch('/api/auth/session');
             const session = await response.json();
 
             if (session.authenticated && session.user) {
@@ -297,7 +297,7 @@ backLink: true
     // Load D1 history
     async function loadHistory() {
         try {
-            const response = await fetch(`/api/power/history?_=${Date.now()}`);
+            const response = await fetch('/api/power/history');
             const data = await response.json();
 
             if (data.success && data.history && data.history.length > 0) {
