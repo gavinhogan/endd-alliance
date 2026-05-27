@@ -20,7 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
-    "wrangler": "^3.57.1"
+    "wrangler": "^4.95.0"
   },
   "dependencies": {
     "ai": "^6.0.191",

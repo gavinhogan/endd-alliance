@@ -75,9 +75,34 @@ export async function onRequestPost(context) {
     const imageBytes = Array.from(new Uint8Array(imageBuffer));
 
     // 4. Construct LLM prompt, integrating Dynamic Schema Anchor Prompting if past keys exist
-    let prompt = "You are an automated stats extraction tool. Extract all of the power details, stats, levels, and numeric values from the image. Output them in a clean, flat list of Key: Value format (e.g. Hero Power: 2314333, Hero Level: 12). Do NOT use bullet points, do NOT add conversational introductions, and do NOT include unit slashes.";
+    let prompt = `Extract all of the power stats, details, and level values from the image.
+Output them using 4 spaces of indentation for nested properties under their parent categories, exactly like this structure:
+
+Hero Power
+    Hero Level: [value]
+    Decorations & Building Stats: [value]
+    Gear: [value]
+    Hero Skill: [value]
+    Hero Tier: [value]
+    Wall of Honor: [value]
+Drone Power
+    Drone Level: [value]
+    Drone Component: [value]
+    Skill Chip: [value]
+Building Power
+    Buildings: [value]
+    Survivor: [value]
+
+⚠️ CRITICAL FONT & DIGIT OCR GUIDE:
+- The game font is highly stylized. Look extremely closely at the shapes to distinguish:
+  * "3" vs "8": The digit "8" has a narrow waist/middle. The digit "3" is open on the left. E.g., Drone Level is 2,589,455 (not 2,539,455).
+  * "3" vs "9": The digit "9" has a closed loop at the top and a curved bottom. The digit "3" is open. E.g., Hero Tier is 1,891,427 (not 1,831,427).
+  * "8" vs "9": Double-check the top loop and waist.
+- Double-check all digits for accuracy before outputting.
+- Output ONLY the indented structured text. Do not write any conversational introductions or summaries.`;
+
     if (expectedKeys.length > 0) {
-      prompt += `\n\nHere are the expected keys for this user's stats: ${JSON.stringify(expectedKeys)}. Please prioritize extracting values for these exact keys. Casing and spelling should match these exactly.`;
+      prompt += `\n\n💡 HISTORICAL USER SCHEMA TRACKING ANCHOR:\nHere are the expected historical keys from your previous uploads: ${JSON.stringify(expectedKeys)}.\nPlease prioritize matching the capitalization and names of these exact keys if they map to the categories/elements extracted above.`;
     }
 
     // 5. Run Llama 3.2 Vision OCR inference via Vercel AI SDK using Cloudflare Workers AI provider

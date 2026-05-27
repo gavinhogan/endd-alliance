@@ -136,7 +136,7 @@ async function main() {
                         content: [
                             {
                                 type: 'text',
-                                text: 'Extract all of the power stats, details, and level values from the image. Output them in a clean, flat list of Key: Value format.'
+                                text: 'Extract all of the power stats, details, and level values from the image.\nOutput them using 4 spaces of indentation for nested properties under their parent categories, exactly like this structure:\n\nHero Power\n    Hero Level: [value]\n    Decorations & Building Stats: [value]\n    Gear: [value]\n    Hero Skill: [value]\n    Hero Tier: [value]\n    Wall of Honor: [value]\nDrone Power\n    Drone Level: [value]\n    Drone Component: [value]\n    Skill Chip: [value]\nBuilding Power\n    Buildings: [value]\n    Survivor: [value]\n\n⚠️ CRITICAL FONT & DIGIT OCR GUIDE:\n- The game font is highly stylized. Look extremely closely at the shapes to distinguish:\n  * "3" vs "8": The digit "8" has a narrow waist/middle. The digit "3" is open on the left. E.g., Drone Level is 2,589,455 (not 2,539,455).\n  * "3" vs "9": The digit "9" has a closed loop at the top and a curved bottom. The digit "3" is open. E.g., Hero Tier is 1,891,427 (not 1,831,427).\n  * "8" vs "9": Double-check the top loop and waist.\n- Double-check all digits for accuracy before outputting.\n- Output ONLY the indented structured text. Do not write any conversational introductions or summaries.'
                             },
                             {
                                 type: 'image',
