@@ -75,7 +75,7 @@ export async function onRequestPost(context) {
     const imageBytes = Array.from(new Uint8Array(imageBuffer));
 
     // 4. Construct LLM prompt, integrating Dynamic Schema Anchor Prompting if past keys exist
-    let prompt = "You are a strict data extraction tool. Extract all of the power, stats, and level keys along with their numeric values from the image. Output ONLY a valid JSON object with double-quoted keys and raw numeric values (no commas, no slashes, no text explanations, no markdown formatting blocks). Example: { \"Hero Power\": 213124333, \"Hero Level\": 1270 }";
+    let prompt = "You are a database loader. Extract all of the power details, stats, levels, and numeric values from the image. Output ONLY a valid JSON object matching these keys and values. Do NOT use single quotes, do NOT leave keys unquoted, and do NOT include any conversational text or explanations. Start your response with { and end it with }.";
     if (expectedKeys.length > 0) {
       prompt += `\n\nHere are the expected keys for this user's stats: ${JSON.stringify(expectedKeys)}. Please prioritize extracting values for these exact keys. Casing and spelling should match these exactly. If you find new stats that are not in this list, extract those as well.`;
     }
@@ -141,11 +141,21 @@ export async function onRequestPost(context) {
       responseText = cleanMatch[1].trim();
     }
 
+    // Robust JS-to-JSON Sanitizer: Automatically repairs single quotes and unquoted keys to valid JSON format
+    let sanitizedResponse = responseText
+      .replace(/'/g, '"') // Normalize single quotes to double quotes
+      .replace(/([\{\s,])([a-zA-Z0-9_]+)\s*:/g, '$1"$2":'); // Wrap unquoted keys in double quotes
+
     let parsedData = {};
     try {
-      parsedData = JSON.parse(responseText);
+      parsedData = JSON.parse(sanitizedResponse);
     } catch (parseErr) {
-      throw new Error(`Failed to parse AI output as JSON. Output was: "${responseText}"`);
+      try {
+        // Fallback: try parsing original if sanitization was aggressive
+        parsedData = JSON.parse(responseText);
+      } catch (originalErr) {
+        throw new Error(`Failed to parse AI output as JSON. Cleaned: "${sanitizedResponse}". Original: "${responseText}"`);
+      }
     }
 
     // 6. Fuzzy-Key Harmonization & Value Sanitization Layer
