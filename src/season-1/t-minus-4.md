@@ -36,8 +36,8 @@ We cannot just teleport across the map and capture a high-level City. The game e
 
 Because of this, the game enforces a strict speed limit on expansion: **there is a limit of 2 Stronghold captures per alliance per day.** Since we only get two steps a day, leadership must carefully plan which ones we capture and when.
 
-> 🚫 **CRITICAL ORDER: DO NOT ATTACK UNMARKED STRONGHOLDS**
-> You must capture Strongholds connecting toward the cities R5 names, and you absolutely must not grab random tiles. If a member goes rogue and captures an unmarked target, they burn half of our daily movement allowance and stall the entire alliance's progression for 24 hours. **The rule is absolute: Only attack targets explicitly marked by leadership.**
+> 🎯 **CRITICAL CONCEPT: LEADERSHIP SELECTS TARGETS & INITIATES ATTACKS**
+> Under our expansion strategy, **leadership will select all target Strongholds and initiate the official attacks.** R5 and R4 officers will coordinate which step of the road we are taking, mark the target on the map, and start the rallies. To ensure our daily allowance of 2 captures is spent precisely on the correct path, all members should simply look for these official targets and join the rallies led by officers.
 
 ---
 
