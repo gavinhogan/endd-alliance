@@ -5,6 +5,7 @@ description: "Real-time session information and metadata retrieved from your Dis
 emoji: "👤"
 tags: tutorial
 backLink: true
+inactive: true
 ---
 <article class="tutorial-content">
 
