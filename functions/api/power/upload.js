@@ -1,4 +1,5 @@
 import { verifyJWT } from "../auth/jwt.js";
+import { isFeatureEnabled } from "../utils/features.js";
 
 function getCookie(request, name) {
   const cookieHeader = request.headers.get("Cookie") || "";
@@ -14,6 +15,15 @@ function getCookie(request, name) {
 
 export async function onRequestPost(context) {
   const { request, env } = context;
+
+  // 0. Barricade behind dynamic feature flag (locked/disabled by default)
+  const isEnabled = await isFeatureEnabled("FEATURE_POWER_TRACKER", env);
+  if (!isEnabled) {
+    return Response.json(
+      { error: "Access Denied: AI Power Tracker module is currently locked/inactive under HQ orders." },
+      { status: 403 }
+    );
+  }
 
   // 1. Authenticate user session
   const jwtSecret = env.JWT_SECRET;

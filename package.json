@@ -6,7 +6,7 @@
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",
-    "dev": "npx wrangler pages dev _site --port 8788 --d1 DB",
+    "dev": "npx wrangler pages dev _site --port 8788 --d1 DB=dd0ce1a7-90f5-4032-8058-d049ac850b19",
     "version:bump": "./scripts/increment_version.sh"
   },
   "keywords": [
